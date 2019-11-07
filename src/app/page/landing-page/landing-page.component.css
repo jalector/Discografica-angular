@@ -11,6 +11,10 @@
     animation-timing-function: ease-in;  
 }
 
+.container{
+    background: #0000009f;
+
+}
 
 @keyframes bg-animation {
     0%{

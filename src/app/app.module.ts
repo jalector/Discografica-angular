@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './page/home-page/home-page.component';
 import { APP_ROUTER_MODULE } from './app.router';
 import { LandingPageComponent } from './page/landing-page/landing-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -12,7 +13,8 @@ import { LandingPageComponent } from './page/landing-page/landing-page.component
   declarations: [
     AppComponent,
     HomePageComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

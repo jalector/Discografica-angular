@@ -3,3 +3,25 @@
 body{
     background-color: black;
 }
+
+
+.card-columns {    
+    column-count: 5;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+    border-radius: 5px;
+}
+
+*::-webkit-scrollbar {
+    width: 7px;
+    background: #F5F5F5;
+    border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border: 2px solid #555555;
+    border-radius: 5px;
+}

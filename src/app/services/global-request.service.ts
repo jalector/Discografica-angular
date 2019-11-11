@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { post } from 'selenium-webdriver/http';
 
 
 @Injectable({
@@ -37,7 +36,6 @@ export class GlobalRequestService {
   ) {
     this.spinnerUse = 0;
   }
-
 
   public logOut() {
     this.token = null;
@@ -95,9 +93,8 @@ export class GlobalRequestService {
     };
 
     if (token) {
-      headerOptions['Authorization'] = this.token;
+      headerOptions['Authorization'] = token;
     }
-
     return new HttpHeaders(headerOptions);
   }
 
@@ -172,9 +169,6 @@ export class GlobalRequestService {
       } else {
         postHeaders = this.getHeader(params.token);
       }
-
-      console.log(postHeaders);
-
 
       this._http.get(
         params.url + params.params,

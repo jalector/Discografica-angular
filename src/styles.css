@@ -2,9 +2,14 @@
 
 body{
     background-color: black;
+    color: silver;
 }
 
+.toast-container .toast{
+    opacity: .9 !important;
+}
 
+  
 .card-columns {    
     column-count: 5;
 }

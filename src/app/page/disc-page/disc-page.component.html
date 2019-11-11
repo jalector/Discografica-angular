@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-4  text-center">
+        <div class="row mx-3">
+            <div class="col">
+                <img [src]="getImage" class="rounded img-fluid">
+                <h1>{{album.name}} <span class="badge badge-secondary">New</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <h1>Music Preview</h1>
+        <iframe [src]="previewAlbumURL" class="rounded" width="100%" height="480" frameborder="0"
+            allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+    <div class="col">
+        <h1 class="text-center">About Album</h1>
+
+        <div class="p-2">
+            <div class="row my-2">
+                <div class="col">
+                    <button class="btn btn-success mx-1">Agregar al carrito</button>
+                    <button class="btn btn-success mx-1">Agregar al almacen</button>
+                    <button class="btn btn-success mx-1">Otra opción</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3>Existencias: <span class="badge badge-secondary mx-4 px-2">###</span></h3>
+                    <h3>Artista: <span class="badge badge-secondary mx-4 px-2">{{album.artists[0].name }}</span></h3>
+                    <h3>Lanzamiento: <span class="badge badge-secondary mx-4 px-2">{{album.release_date}}</span></h3>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

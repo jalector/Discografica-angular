@@ -1,24 +1,5 @@
 <div class="container-fluid">
-
     <div class="card-columns p-5">
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
-        <app-disc></app-disc>
+        <app-album *ngFor="let album of albums" [album]="album"></app-album>
     </div>
-
 </div>

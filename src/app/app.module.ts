@@ -10,7 +10,6 @@ import { HomePageComponent } from './page/home-page/home-page.component';
 import { APP_ROUTER_MODULE } from './app.router';
 import { LandingPageComponent } from './page/landing-page/landing-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { DiscComponent } from './components/disc/disc.component';
 import { DiscPageComponent } from './page/disc-page/disc-page.component';
 import { SpotifyService } from './services/spotify.service';
 
@@ -18,6 +17,13 @@ import { SpotifyService } from './services/spotify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AlbumComponent } from './components/album/album.component';
+import { CartPageComponent } from './page/cart-page/cart-page.component';
+import { CustomersPageComponent } from './page/customers-page/customers-page.component';
+import { UsersPageComponent } from './page/users-page/users-page.component';
+import { AboutPageComponent } from './page/about-page/about-page.component';
+import { StorePageComponent } from './page/store-page/store-page.component';
+import { SearchPageComponent } from './page/search-page/search-page.component';
 
 
 
@@ -28,14 +34,18 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HomePageComponent,
     LandingPageComponent,
     NavbarComponent,
-    DiscComponent,
-    DiscPageComponent
+    DiscPageComponent,
+    AlbumComponent,
+    CartPageComponent,
+    CustomersPageComponent,
+    StorePageComponent,
+    UsersPageComponent,
+    AboutPageComponent,
+    SearchPageComponent,
   ],
   imports: [
     BrowserModule,
-
     FormsModule,
-
     HttpClientModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,

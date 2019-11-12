@@ -15,7 +15,7 @@ import { SpotifyService } from './services/spotify.service';
 
 
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AlbumComponent } from './components/album/album.component';
 import { CartPageComponent } from './page/cart-page/cart-page.component';
@@ -48,6 +48,7 @@ import { SearchPageComponent } from './page/search-page/search-page.component';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    ToastNoAnimationModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
     APP_ROUTER_MODULE

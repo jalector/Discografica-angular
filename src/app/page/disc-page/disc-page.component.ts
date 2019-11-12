@@ -29,6 +29,7 @@ export class DiscPageComponent {
   }
 
   public get getImage() {
+
     return this.album.images[0].url;
   }
 

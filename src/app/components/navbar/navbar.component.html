@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <span class="navbar-brand"><img src="./assets/logo.png" width="60" height="45" style="filter: invert();"></span>
+    <b class="pr-5">Bootstrap</b>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,8 +16,9 @@
             <li class="nav-item"><a class="nav-link" href="./#/about">About</a></li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar álbum">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            <input name="seach" class="form-control mr-sm-2" type="search" [(ngModel)]="searchAlbum"
+                placeholder="Buscar álbum">
+            <button (click)="search()" class="btn btn-outline-success my-2 my-sm-0" type="button">Buscar</button>
         </form>
     </div>
 </nav>

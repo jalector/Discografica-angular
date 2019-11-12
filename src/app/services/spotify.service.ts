@@ -8,7 +8,7 @@ export { Album } from '../Model/Album.model';
 })
 export class SpotifyService {
   private _api: string = "https://api.spotify.com/v1/";
-  private _token: string = "BQCr48bkzfYy-N0almA_AtQUnoS5W9gtKVbyDzQoTM_81x6PR-hYsy1KgRQpCzBztU8wHijgGVNot1NF0PM";
+  private _token: string = "BQC2OnxM0LsfQWXKCd344Ibwe-Sj7OMnjWg3gynEjtW2lwu6gngKWbWO82HiG1b1j2OeJLTZk0OESi3HnpM";
 
   constructor(
     private _globalRequest: GlobalRequestService
@@ -39,8 +39,19 @@ export class SpotifyService {
         token: this.token(),
         params: '?market=es'
       }).then((response) => {
-        console.log(response);
         good(response);
+      });
+    });
+  }
+
+  public searchAlbum(album: string, limit: number): Promise<Album[]> {
+    return new Promise((good, bad) => {
+      this._globalRequest.get({
+        url: this._api + "",
+        token: this.token(),
+        params: `?q=${album}&type=album&market=ES&limit=${limit}`
+      }).then((response) => {
+        good(response.albums.items);
       });
     });
   }

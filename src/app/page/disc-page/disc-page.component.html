@@ -1,26 +1,23 @@
 <div class="row">
-    <div class="col-4  text-center">
+    <div class="col-4">
         <div class="row mx-3">
             <div class="col">
                 <img [src]="getImage" class="rounded img-fluid">
-                <h1>{{album.name}} <span class="badge badge-secondary">New</span></h1>
+                <h3 class="p-2">{{album.name}} <span class="badge badge-secondary">New</span></h3>
+                <iframe [src]="previewAlbumURL" class="rounded" width="100%" height="380" frameborder="0"
+                    allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
         </div>
     </div>
-    <div class="col-3">
-        <h1>Music Preview</h1>
-        <iframe [src]="previewAlbumURL" class="rounded" width="100%" height="480" frameborder="0"
-            allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>
+
     <div class="col">
         <h1 class="text-center">About Album</h1>
-
         <div class="p-2">
             <div class="row my-2">
                 <div class="col">
-                    <button class="btn btn-success mx-1">Agregar al carrito</button>
-                    <button class="btn btn-success mx-1">Agregar al almacen</button>
-                    <button class="btn btn-success mx-1">Otra opción</button>
+                    <button class="btn btn-success m-1">Agregar al carrito</button>
+                    <button class="btn btn-success m-1">Agregar al almacen</button>
+                    <button class="btn btn-success m-1">Otra opción</button>
                 </div>
             </div>
             <div class="row">

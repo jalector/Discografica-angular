@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,19 +13,20 @@ export class NavbarComponent {
 
   constructor(
     private _toastr: ToastrService,
-  ) { }
+    private _route: ActivatedRoute,
+    private _router: Router,
+  ) {
+
+  }
 
   public search(): void {
     if (this.searchAlbum == null || this.searchAlbum == "") {
-
+      this._toastr.warning("No puedes dejar esta campo vácio", "Concepto de búsqieda", {
+        tapToDismiss: true,
+      });
     } else {
+      this._router.navigateByUrl(`search/${this.searchAlbum}`);
     }
-    this._toastr.warning("No puedes dejar esta campo vácio", "sdf", {
-      tapToDismiss: true,
-      closeButton: true,
-      timeOut: 5 * 1000 * 30,
-      progressBar: true,
-    });
 
   }
 

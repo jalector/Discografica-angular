@@ -8,10 +8,9 @@
 <div class="row">
     <div class="col">
         <div class="card m-2">
-            <div class="card-headear px-3 py-2">
+            <div class="card-headear px-3 py-2 text-dark    ">
                 <h2>Registro de usuarios</h2>
             </div>
-            <hr class="m-3">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
@@ -109,57 +108,46 @@
     </div>
     <div class="col">
         <div class="card m-2">
-            <div class="card-header">
+            <div class="card-header text-dark">
                 <h3>Detalle del usuario</h3>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row px-3">
                     <div class="col">
-                        <table class="table table-sm table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>P/U</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Disco: Off The Wall</td>
-                                    <td>3</td>
-                                    <td>70$</td>
-                                    <td>210$</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Disco: Off The Wall</td>
-                                    <td>3</td>
-                                    <td>70$</td>
-                                    <td>210$</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Disco: Off The Wall</td>
-                                    <td>3</td>
-                                    <td>70$</td>
-                                    <td>210$</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Disco: Off The Wall</td>
-                                    <td>3</td>
-                                    <td>70$</td>
-                                    <td>210$</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center" colspan="4">Total</td>
-                                    <td>840$</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="form-row">
+                            <label class="font-weight-bold">Nombre completo</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Nombre">
+                                <input type="text" class="form-control" placeholder="Apellido">
+                            </div>
+                            <label class="font-weight-bold mt-2">Datos personales</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Dirección">
+                                <input type="text" class="form-control" placeholder="Correo">
+                                <input type="text" class="form-control" placeholder="Teléfono">
+                            </div>
+                            <label class="font-weight-bold mt-2">Credenciales</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Contraseña">
+                                <input type="text" class="form-control" placeholder="Repetir contraseña">
+                            </div>
+
+                            <label class="font-weight-bold mt-2">Detalles de creación</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Fecha alta">
+                                <input type="text" class="form-control" placeholder="Usuario alta">
+                            </div>
+                            <label class="font-weight-bold mt-2">Detalles de modificación</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Fecha de modificación">
+                                <input type="text" class="form-control" placeholder="Usuario de modificación">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row px-3">
+                    <div class="col text-right mt-3">
+                        <button class="btn btn-success">Guardar usuario</button>
                     </div>
                 </div>
             </div>

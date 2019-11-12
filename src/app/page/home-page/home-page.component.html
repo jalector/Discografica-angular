@@ -1,5 +1,8 @@
-<div class="container-fluid">
-    <div class="card-columns p-5">
-        <app-album *ngFor="let album of albums" [album]="album"></app-album>
+<div class="row">
+    <div class="col">
+        <h1 class="mx-4 my-3    ">Encuentra tu música favorita</h1>
     </div>
+</div>
+<div class="card-columns px-4 py-2">
+    <app-album *ngFor="let album of albums" [album]="album"></app-album>
 </div>

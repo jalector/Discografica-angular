@@ -19,6 +19,6 @@ const routes: Routes = [
     { path: 'users', component: UsersPageComponent },
     { path: 'about', component: AboutPageComponent },
     { path: 'cart', component: CartPageComponent },
-    { path: 'search', component: SearchPageComponent },
+    { path: 'search/:seachAlbum', component: SearchPageComponent },
 ];
 export const APP_ROUTER_MODULE = RouterModule.forRoot(routes, { useHash: true });

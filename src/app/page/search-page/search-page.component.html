@@ -1,1 +1,9 @@
-<p>search-page works!</p>
+<div class="m-5" *ngIf="albums == null || albums.length == 0">
+    <h1 class="text-center">No hay resultados de la búsqueda</h1>
+</div>
+<div *ngIf="albums != null">
+    <h4 class="m-3">Resultados: {{albums.length}} albumes encontrados</h4>
+    <ul>
+        <app-album-list-item *ngFor="let album of albums" [album]="album"></app-album-list-item>
+    </ul>
+</div>

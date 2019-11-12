@@ -24,6 +24,7 @@ import { UsersPageComponent } from './page/users-page/users-page.component';
 import { AboutPageComponent } from './page/about-page/about-page.component';
 import { StorePageComponent } from './page/store-page/store-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
+import { AlbumListItemComponent } from './components/album-list-item/album-list-item.component';
 
 
 
@@ -42,6 +43,7 @@ import { SearchPageComponent } from './page/search-page/search-page.component';
     UsersPageComponent,
     AboutPageComponent,
     SearchPageComponent,
+    AlbumListItemComponent,
   ],
   imports: [
     BrowserModule,

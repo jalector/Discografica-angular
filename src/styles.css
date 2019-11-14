@@ -1,4 +1,5 @@
 @import "../node_modules/ngx-toastr/toastr.css";
+@import "./app/lib/animate.css";
 
 body{
     background-color: black;

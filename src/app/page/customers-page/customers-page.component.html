@@ -5,109 +5,10 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col">
-        <div class="card m-2">
-            <div class="card-headear px-3 py-2 text-dark    ">
-                <h2>Registro de cliente</h2>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-sm table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <td>Id</td>
-                                    <td>Nombre</td>
-                                    <td>Apellidos</td>
-                                    <td>Teléfono</td>
-                                    <td>Dirección</td>
-                                    <td>Correo</td>
-                                    <td>Rol</td>
-                                    <td class="text-center">Opciones</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col text-right">
-                        <button class="btn btn-primary">Registrar nuevo cliente</button>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </div>
+<div class="rol mb-5">
     <div class="col">
-        <div class="card m-2">
+        <div *ngIf="selectedCustomer != null" class="card">
             <div class="card-header text-dark">
                 <h3>Detalle del cliente</h3>
             </div>
@@ -151,6 +52,64 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card ">
+            <div class="card-headear px-3 py-2 text-dark">
+                <h2>Registro de cliente</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col p-0">
+                        <div *ngIf="customers.lenght == 0" class="alert alert-warning">
+                            <h3>¡No existen clientes registrados!</h3>
+                        </div>
+                        <table *ngIf="customers.lenght != 0" class="table table-sm table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos Paterno</th>
+                                    <th>Apellidos Materno</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                    <th>Correo</th>
+                                    <th>Rol</th>
+                                    <th class="text-center">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let customer of customers">
+                                    <td>{{customer.id}}</td>
+                                    <td>{{customer.nombre}}</td>
+                                    <td>{{customer.apellidoPaterno}}</td>
+                                    <td>{{customer.apellidoMaterno}}</td>
+                                    <td>{{customer.telefono}}</td>
+                                    <td>{{customer.direccion}}</td>
+                                    <td>{{customer.correo}}</td>
+                                    <td>{{customer.rol}}</td>
+                                    <td class="btn-group text-center">
+                                        <button class="btn btn-info btn-sm" (click)="makeEditCustomer(customer)">
+                                            <span class="fa fa-edit"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <button class="btn btn-primary">Registrar nuevo cliente</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

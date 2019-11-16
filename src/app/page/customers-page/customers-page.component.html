@@ -6,58 +6,101 @@
 </div>
 
 
-<div class="rol mb-5">
+<div class="row mb-2">
     <div class="col">
         <div *ngIf="selectedCustomer != null" class="card">
             <div class="card-header text-dark">
                 <h3>Detalle del cliente</h3>
             </div>
-            <div class="card-body">
+            <form class="card-body">
+                
                 <div class="row px-3">
                     <div class="col">
                         <div class="form-row">
                             <label class="font-weight-bold">Nombre completo</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre">
-                                <input type="text" class="form-control" placeholder="Apellido">
+                                <input 
+                                    name="nombre" 
+                                    [(ngModel)]="selectedCustomer.nombre" 
+                                    type="text" class="form-control" 
+                                    placeholder="Nombre">
+
+                                <input 
+                                    name="apellidoPaterno" 
+                                    [(ngModel)]="selectedCustomer.apellidoPaterno"  
+                                    type="text" class="form-control" 
+                                    placeholder="Apellido paterno">
+                                    
+                                <input name="amaterno" 
+                                    name="apellidoMaterno" 
+                                    [(ngModel)]="selectedCustomer.apellidoMaterno"  
+                                    type="text" class="form-control" 
+                                    placeholder="Apellido materno">
                             </div>
                             <label class="font-weight-bold mt-2">Datos personales</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Dirección">
-                                <input type="text" class="form-control" placeholder="Correo">
-                                <input type="text" class="form-control" placeholder="Teléfono">
+                                <input
+                                    name="dirección"
+                                    [(ngModel)]="selectedCustomer.direccion" 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Dirección">
+                                <input
+                                    name="correo"
+                                    [(ngModel)]="selectedCustomer.correo" 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Correo">
+                                <input
+                                    name="teléfono"
+                                    [(ngModel)]="selectedCustomer.telefono" 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Teléfono">
                             </div>
                             <label class="font-weight-bold mt-2">Credenciales</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Contraseña">
-                                <input type="text" class="form-control" placeholder="Repetir contraseña">
+                                <input
+                                    name="password"
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Contraseña">
+                                <input
+                                    name="passwordConfirm"
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Repetir contraseña">
                             </div>
 
-                            <label class="font-weight-bold mt-2">Detalles de creación</label>
+                            <!-- <label class="font-weight-bold mt-2">Detalles de creación</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Fecha alta">
                                 <input type="text" class="form-control" placeholder="Usuario alta">
-                            </div>
-                            <label class="font-weight-bold mt-2">Detalles de modificación</label>
+                            </div> -->
+                            <!-- <label class="font-weight-bold mt-2">Detalles de modificación</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Fecha de modificación">
                                 <input type="text" class="form-control" placeholder="Usuario de modificación">
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="row px-3">
                     <div class="col text-right mt-3">
-                        <button class="btn btn-success">Guardar usuario</button>
+                            <button *ngIf="selectedCustomer.id == null" class="btn btn-success mx-1">Registrar</button>
+                            <button *ngIf="selectedCustomer.id != null" class="btn btn-success mx-1">Guardar</button>
+                            <button class="btn btn-danger mx-1">Eliminar</button>
+                            <button (click)="cancelCustomerEdit()" class="btn btn-warning mx-1">Cancelar</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col">
+
         <div class="card ">
             <div class="card-headear px-3 py-2 text-dark">
                 <h2>Registro de cliente</h2>
@@ -105,7 +148,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-right">
-                        <button class="btn btn-primary">Registrar nuevo cliente</button>
+                        <button  (click)="createCustomerQuestion()" class="btn btn-primary">Registrar nuevo cliente</button>
                     </div>
                 </div>
             </div>

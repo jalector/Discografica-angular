@@ -6,5 +6,7 @@ export interface Customer {
     telefono: string,
     direccion: string,
     correo: string,
-    rol: string
+    rol: string,
+    fechaAlta: Date,
+    fechaActualizadon: Date
 }

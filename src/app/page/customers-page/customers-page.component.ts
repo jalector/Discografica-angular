@@ -34,12 +34,33 @@ export class CustomersPageComponent implements OnInit {
       this._toastr.warning(
         `No se guardaron los datos de: ${
         this.selectedCustomer.nombre
-        }, cargando datos de ${customer.nombre}`,
+        }, cargando datos de${customer.nombre == null ? "l registro": " " + customer.nombre}`,
         "Datos no guardados."
       );
-
       this.selectedCustomer = customer;
+      window.scrollTo(0,0);
     }
+  }
+  
+  public createCustomerQuestion(){
+    if(this.selectedCustomer == null){
+      this.selectedCustomer = {
+        id: null,
+        nombre: null,
+        apellidoPaterno: null,
+        apellidoMaterno: null,
+        telefono: null,
+        direccion: null,
+        correo: null,
+        rol: null,
+        fechaAlta: null,
+        fechaActualizadon: null,
+      };
+      window.scrollTo(0,0);
+    }else{
+      this._toastr.warning("No puedes registrar mientras estas editando un cliente");
+    }
+
   }
 
   public deleteCustomerQuestion(customer: Customer) {
@@ -48,6 +69,14 @@ export class CustomersPageComponent implements OnInit {
     } else {
       this._toastr.warning("No puedes eliminar mientras estas editando un cliente");
     }
+  }
+
+  public cancelCustomerEdit(){
+    this.selectedCustomer = null;
+  }
+
+  public createCustomer(){
+    this._toastr.error("No supported", "Lo siento mijo");
   }
 
   private deleteCustomer() {

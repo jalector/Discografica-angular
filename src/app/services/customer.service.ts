@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '../Model/Customer.model';
 import { GlobalRequestService } from './global-request.service';
-export { Customer } from '../Model/Customer.model';
+export { Customer } from '../model/Customer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  private customers: Customer[] = [
+  private customers: any[] = [
     {
       id: 1,
       nombre: "Miguel",

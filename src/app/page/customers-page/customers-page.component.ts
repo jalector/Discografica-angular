@@ -44,18 +44,7 @@ export class CustomersPageComponent implements OnInit {
   
   public createCustomerQuestion(){
     if(this.selectedCustomer == null){
-      this.selectedCustomer = {
-        id: null,
-        nombre: null,
-        apellidoPaterno: null,
-        apellidoMaterno: null,
-        telefono: null,
-        direccion: null,
-        correo: null,
-        rol: null,
-        fechaAlta: null,
-        fechaActualizadon: null,
-      };
+      this.selectedCustomer = new Customer();
       window.scrollTo(0,0);
     }else{
       this._toastr.warning("No puedes registrar mientras estas editando un cliente");

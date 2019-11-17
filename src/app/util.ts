@@ -1,10 +1,10 @@
 export class Util{
 
-    public  fromJSONColleciton<Type>(collection:any, converter: Function): Type[]{
+    public  fromJSONColleciton<Type>(collection:any, converter: (json:any) => Type): Type[]{
         let array: Type[] = [];
         
         collection.forEach(element => {
-            array = converter(element);
+            array.push(converter(element));
         });
 
         return array;

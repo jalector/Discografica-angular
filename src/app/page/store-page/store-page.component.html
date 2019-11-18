@@ -5,6 +5,75 @@
     </div>
 </div>
 
+<div class="row m-2 alert alert-primary">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <div class="input-group">
+                    <input name="search" [(ngModel)]="search" type="text" class="form-control"
+                        placeholder="Busca el album interesante para discográfica">
+                    <div (click)="searchAlbum()" class="input-group-append">
+                        <button class="btn input-group-text"><span class="fa fa-search"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div *ngIf="albumSearched.length == 0" class="alert alert-info text-center">
+                    <h5>No hay resultados</h5>
+                </div>
+                <div class="list-group" style="max-height: 400px;overflow-y: scroll;">
+                    <div *ngFor="let album of albumSearched;" class="alert alert-warning m-3 animated fadeIn">
+                        <div class="row p-0">
+                            <div class="col-3 px-0 mx-0 text-center">
+                                <img class="img-thumbnail" [src]="album.images[1].url">
+                            </div>
+                            <div class="col">
+                                <h6>{{album.name}}</h6>
+                                <span class="badge badge-primary badge-pill mx-1">{{album.total_tracks}} tracks</span>
+                                <i>{{album.artists[0].name}}</i>
+                                <hr>
+                                <button (click)="selectedAlbum = album" class="btn">ver detalle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div *ngIf="selectedAlbum != null" class="card">
+            <div class="card-header">
+                <h3>Detalles de Album</h3>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col m-3">
+                        <img class="img-thumbnail" [src]="selectedAlbum.images[1].url">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <!-- <img class="img-thumbnail" src="" alt=""> -->
+                    <div class="input-group">
+
+                        <input name="name" [(ngModel)]="selectedAlbum.name" type="text" class="form-control m-1"
+                            placeholder="Nombre completo" disabled>
+                        <input name="artist" [(ngModel)]="selectedAlbum.artists[0].name" type="text"
+                            class="form-control m-1" placeholder="Aritsta" disabled>
+                    </div>
+                    <input type="text" class="form-control m-1" placeholder="Fecha de lanzamiento">
+
+
+
+
+
+                    <button class="btn btn-success m-1">Agregar exitencia</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="row">
     <div class="col">
         <div class="card m-2">

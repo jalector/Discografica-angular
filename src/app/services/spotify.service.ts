@@ -8,7 +8,7 @@ export { Album } from '../Model/Album.model';
 })
 export class SpotifyService {
   private _api: string = "https://api.spotify.com/v1/";
-  private _token: string = "BQB_FA_0vBJdOM5PN3_lKNziVuv8mYvuMVBMg0GF3dVFR7aD787JKYTNLfu-X22IK53rwwpNa1ltEnzheMY";
+  private _token: string = "BQAgO5wOG9RhbrnJhetW0j_2L9lF2esfJGSHuWHmHsGcncJvBu2BFLC_bAOvZSKAOsxKLIySE_fV0-Y4hkk";
 
   constructor(
     private _globalRequest: GlobalRequestService

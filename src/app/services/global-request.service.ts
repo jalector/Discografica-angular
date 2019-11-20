@@ -78,14 +78,14 @@ export class GlobalRequestService {
    * @description Esta función retorna un machote que se utiliza en la mayoría de 
    * las peticiones. 
    */
-  public getHeader() {
+  public getHeader(token?: string) {
     let headerOptions = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
 
-    if (this.token) {
-      headerOptions['Authorization'] = this.token;
+    if (token) {
+      headerOptions['Authorization'] = token;
     }
     return new HttpHeaders(headerOptions);
   }

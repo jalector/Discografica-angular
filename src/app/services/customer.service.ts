@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Customer } from '../Model/Customer.model';
+import { Customer } from '../model/Customer.model';
 import { GlobalRequestService } from './global-request.service';
+
 export { Customer } from '../model/Customer.model';
 
 @Injectable({

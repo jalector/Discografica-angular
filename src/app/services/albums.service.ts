@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Album } from '../Model/Album.model';
+import { Album } from '../model/Album.model';
 
-export { Album } from '../Model/Album.model';
+export { Album } from '../model/Album.model';
 
 
 @Injectable({

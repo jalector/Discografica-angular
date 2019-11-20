@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { GlobalRequestService } from './global-request.service';
-import { Album } from '../Model/Album.model';
+import { Album } from '../model/Album.model';
 import { Util } from '../util';
-export { Album } from '../Model/Album.model';
+export { Album } from '../model/Album.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
   private _api: string = "https://api.spotify.com/v1/";
-  private _token: string = "BQA9LJP4bukdsTgsO1vZfF1TVFjZyDsThi2sGiKmLX0xRKpyQ95rTd2jaNQ9pNwQKqQeU6auPAn9Uq19NSk";
+  private _token: string = "BQCJHw2n4vJzhMRHZ6a9GOT6QwD4zeakVBj4hVCAbDsajN8dZFmDdnL8xn_kLZZG6FA3AmYXHnJwrjiGqU8";
 
   constructor(
     private _globalRequest: GlobalRequestService

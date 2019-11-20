@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Album } from 'src/app/Model/Album.model';
+import { Album } from 'src/app/model/Album.model';
 
 @Component({
   selector: 'app-album-list-item',
@@ -12,7 +12,7 @@ export class AlbumListItemComponent implements OnInit {
   @Input() album: Album;
 
   constructor() { }
-
+ 
   ngOnInit() {
   }
 

@@ -10,19 +10,11 @@ import { ToastrService } from 'ngx-toastr';
 export class GlobalRequestService {
 
   /** Apis a las que me voy a conectar */
-  public static api: string = "todavianosé";
+  public static api: string = "http://192.168.1.84:8000/api";
 
 
   /** Token que se usa para la autorización en cada peticion al servidor  */
-  private _token: string;
-
-  private set token(value: string) {
-    this._token = value;
-  }
-
-  private get token() {
-    return this._token;
-  }
+  public token: string;
 
 
   /** Representa la cantidad de peticiones que estarán haciendo uso de la
@@ -86,14 +78,14 @@ export class GlobalRequestService {
    * @description Esta función retorna un machote que se utiliza en la mayoría de 
    * las peticiones. 
    */
-  public getHeader(token?: string) {
+  public getHeader() {
     let headerOptions = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
 
-    if (token) {
-      headerOptions['Authorization'] = token;
+    if (this.token) {
+      headerOptions['Authorization'] = this.token;
     }
     return new HttpHeaders(headerOptions);
   }
@@ -131,7 +123,7 @@ export class GlobalRequestService {
       this._http.post(
         params.url,
         params.body,
-        { headers: postHeaders }
+        { headers: postHeaders },
       ).toPromise().then((response) => {
         good(response);
         this.hideSipnner();

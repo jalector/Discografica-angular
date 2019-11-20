@@ -1,15 +1,15 @@
 <div class="alert-light rounded animated fadeIn">
     <div class="row m-0 p-0">
         <div class="col-3 p-2">
-            <img [src]="album.images[1].url" class="img-thumbnail">
+            <img [src]="album.image" class="img-thumbnail">
         </div>
         <div class="col p-2">
             <div class="row">
                 <div class="col text-dark">
                     <h5 class="m-0">{{album.name}}</h5>
                     <hr>
-                    <span class="badge badge-dark"> {{album.release_date}}</span>
-                    <span class="badge badge-secundary"> {{album.total_tracks}} canciones</span>
+                    <span class="badge badge-dark"> {{album.releaseDate}}</span>
+                    <span class="badge badge-secundary"> {{album.totalTracks}} canciones</span>
                 </div>
             </div>
             <div class="row">

@@ -1,11 +1,11 @@
 <div class="card">
-    <img [src]="getImage" class="card-img-top">
+    <img [src]="album.image" class="card-img-top">
     <div class="card-body">
         <h3 class="text-dark">{{album.name}}</h3>
         <h5 class="text-muted">
-            {{album.artists[0].name}}
+            {{album.artist}}
         </h5>
-
         <a href="./#/disc/{{album.id}}" class="card-link">Ver detalles</a>
+        <span class="badge badge-pill badge-success mx-2">{{album.total_tracks}}</span>
     </div>
 </div>

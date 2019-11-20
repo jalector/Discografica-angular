@@ -20,7 +20,6 @@ export class DiscPageComponent {
     this._route.paramMap.subscribe(async (params) => {
       this.id = params.get("id");
       this.album = await this._spotifyService.getAlbum(this.id);
-      console.log(this.album);
     });
   }
 
@@ -28,10 +27,6 @@ export class DiscPageComponent {
     return this._sanitazer.bypassSecurityTrustResourceUrl("https://open.spotify.com/embed/album/" + this.id);
   }
 
-  public get getImage() {
-
-    return this.album.images[0].url;
-  }
 
 
 }

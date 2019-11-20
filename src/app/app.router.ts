@@ -8,6 +8,7 @@ import { UsersPageComponent } from './page/users-page/users-page.component';
 import { AboutPageComponent } from './page/about-page/about-page.component';
 import { CartPageComponent } from './page/cart-page/cart-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
+import { ProductsPageComponent } from './page/products-page/products-page.component';
 
 
 const routes: Routes = [
@@ -20,5 +21,6 @@ const routes: Routes = [
     { path: 'about', component: AboutPageComponent },
     { path: 'cart', component: CartPageComponent },
     { path: 'search/:seachAlbum', component: SearchPageComponent },
+    { path: 'products', component: ProductsPageComponent },
 ];
 export const APP_ROUTER_MODULE = RouterModule.forRoot(routes, { useHash: true });

@@ -11,9 +11,7 @@ export class AlbumComponent {
   @Input() album: Album;
 
 
-  public get getImage() {
-    return this.album.images[0].url;
-  }
+
 
   constructor() {
   }

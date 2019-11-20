@@ -323,4 +323,27 @@ export class CustomerService {
     });
   }
 
+  public registerCustomer(): Promise<string> {
+    return new Promise((good, bad) => {
+      this._globalRequest.post({
+        url: GlobalRequestService.api + "/users",
+        body: `{
+          "name": "Petronilias",
+          "lastname": "Rockefeller",
+          "phone": "477123457",
+          "address": "Basadda",
+            "email": "sara1@outlook.com",
+            "password": "123",
+            "user_type": "cliente"
+        }`,
+        token: "",
+
+      }).then((response) => {
+        good(response);
+      }).catch((error) => {
+        bad(error);
+      })
+    });
+  }
+
 }

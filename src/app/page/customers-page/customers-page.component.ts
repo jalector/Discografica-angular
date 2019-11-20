@@ -34,19 +34,19 @@ export class CustomersPageComponent implements OnInit {
       this._toastr.warning(
         `No se guardaron los datos de: ${
         this.selectedCustomer.nombre
-        }, cargando datos de${customer.nombre == null ? "l registro": " " + customer.nombre}`,
+        }, cargando datos de${customer.nombre == null ? "l registro" : " " + customer.nombre}`,
         "Datos no guardados."
       );
       this.selectedCustomer = customer;
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
   }
-  
-  public createCustomerQuestion(){
-    if(this.selectedCustomer == null){
+
+  public createCustomerQuestion() {
+    if (this.selectedCustomer == null) {
       this.selectedCustomer = new Customer();
-      window.scrollTo(0,0);
-    }else{
+      window.scrollTo(0, 0);
+    } else {
       this._toastr.warning("No puedes registrar mientras estas editando un cliente");
     }
 
@@ -60,11 +60,14 @@ export class CustomersPageComponent implements OnInit {
     }
   }
 
-  public cancelCustomerEdit(){
+  public cancelCustomerEdit() {
     this.selectedCustomer = null;
   }
 
-  public createCustomer(){
+  public async createCustomer() {
+    let response: string = await this._customerService.registerCustomer();
+    console.log(response);
+
     this._toastr.error("No supported", "Lo siento mijo");
   }
 

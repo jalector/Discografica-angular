@@ -25,6 +25,7 @@ import { AboutPageComponent } from './page/about-page/about-page.component';
 import { StorePageComponent } from './page/store-page/store-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
 import { AlbumListItemComponent } from './components/album-list-item/album-list-item.component';
+import { ProductsPageComponent } from './page/products-page/products-page.component';
 
 
 
@@ -44,6 +45,7 @@ import { AlbumListItemComponent } from './components/album-list-item/album-list-
     AboutPageComponent,
     SearchPageComponent,
     AlbumListItemComponent,
+    ProductsPageComponent,
   ],
   imports: [
     BrowserModule,

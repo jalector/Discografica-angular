@@ -1,8 +1,7 @@
-export class Util{
+export class Util {
 
-    public  fromJSONColleciton<Type>(collection:any, converter: (json:any) => Type): Type[]{
+    public static fromJSONColleciton<Type>(collection: any[], converter: (json: any) => Type): Type[] {
         let array: Type[] = [];
-        
         collection.forEach(element => {
             array.push(converter(element));
         });

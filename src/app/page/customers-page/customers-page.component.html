@@ -62,7 +62,8 @@
                 </div>
                 <div class="row px-3">
                     <div class="col text-right mt-3">
-                        <button *ngIf="selectedCustomer.id == null" class="btn btn-success mx-1">Registrar</button>
+                        <button (click)="createCustomer()" *ngIf="selectedCustomer.id == null"
+                            class="btn btn-success mx-1">Registrar</button>
                         <button *ngIf="selectedCustomer.id != null" class="btn btn-success mx-1">Guardar</button>
                         <button class="btn btn-danger mx-1">Eliminar</button>
                         <button (click)="cancelCustomerEdit()" class="btn btn-warning mx-1">Cancelar</button>

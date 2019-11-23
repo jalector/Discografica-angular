@@ -1,34 +1,45 @@
 import { Person } from "../interface/Person.interface";
 
-export class Customer implements Person{
-
+export class Customer implements Person {
+    public passwordConfirm: string;
     public constructor(
         public id?: number,
-        public nombre?: string,
-        public apellidoPaterno?: string,
-        public apellidoMaterno?: string,
-        public telefono?: string,
-        public direccion?: string,
-        public correo?: string,
-        public rol?: string,
-    ){ }
+        public name?: string,
+        public lastname?: string,
+        public phone?: string,
+        public address?: string,
+        public email?: string,
+        public password?: string,
+        public userType?: string,
+    ) { }
 
-    public fromJSON(json):Customer {
-        let customer:Customer;
+    public toJSON(): string {
+        let json = {
+            name: this.name,
+            lastname: this.lastname,
+            phone: this.phone,
+            address: this.address,
+            email: this.email,
+            password: this.password,
+            user_type: "cliente",
+        };
+
+        return JSON.stringify(json);
+    }
+
+    public static fromJSON(json): Customer {
+        let customer: Customer;
         customer = new Customer(
             json.id,
-            json.nombre,
-            json.apellidoPaterno,
-            json.apellidoMaterno,
-            json.telefono,
-            json.direccion,
-            json.correo,
-            json.rol
+            json.name,
+            json.lastname,
+            json.phone,
+            json.address,
+            json.email,
+            json.password,
+            json.user_type,
         );
         return customer;
     }
 
-
-    
 }
-

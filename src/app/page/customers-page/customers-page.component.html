@@ -8,65 +8,58 @@
 
 <div class="row mb-2">
     <div class="col">
-        <div *ngIf="selectedCustomer != null" class="card">
+        <div *ngIf="selectedCustomer != null" class="card  mx-5">
             <div class="card-header text-dark">
                 <h3>Detalle del cliente</h3>
             </div>
-            <form class="card-body">
 
+            <form #customerForm="ngForm" class="card-body" (ngSubmit)="submitCustomer()">
                 <div class="row px-3">
                     <div class="col">
                         <div class="form-row">
                             <label class="font-weight-bold">Nombre completo</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="nombre"
-                                    [(ngModel)]="selectedCustomer.nombre" placeholder="Nombre">
+                                <input type="text" class="form-control" name="name" [(ngModel)]="selectedCustomer.name"
+                                    placeholder="Nombre" required>
 
-                                <input type="text" class="form-control" name="apellidoPaterno"
-                                    [(ngModel)]="selectedCustomer.apellidoPaterno" placeholder="Apellido paterno">
-
-                                <input type="text" class="form-control" name="apellidoMaterno"
-                                    [(ngModel)]="selectedCustomer.apellidoMaterno" placeholder="Apellido materno">
+                                <input type="text" class="form-control" name="lastname"
+                                    [(ngModel)]="selectedCustomer.lastname" placeholder="Apellido paterno" required>
                             </div>
                             <label class="font-weight-bold mt-2">Datos personales</label>
                             <div class="input-group">
-                                <input type="text" name="dirección" class="form-control"
-                                    [(ngModel)]="selectedCustomer.direccion" placeholder="Dirección">
-
-                                <input type="text" class="form-control" name="correo"
-                                    [(ngModel)]="selectedCustomer.correo" placeholder="Correo">
-
-                                <input type="text" class="form-control" name="teléfono"
-                                    [(ngModel)]="selectedCustomer.telefono" placeholder="Teléfono">
+                                <input type="text" name="address" class="form-control"
+                                    [(ngModel)]="selectedCustomer.address" placeholder="Dirección" required>
+                                <input type="text" class="form-control" name="email"
+                                    [(ngModel)]="selectedCustomer.email" placeholder="Correo" required>
                             </div>
-                            <label class="font-weight-bold mt-2">Credenciales</label>
-                            <div class="input-group">
-                                <input name="password" type="text" class="form-control" placeholder="Contraseña">
-
-                                <input name="passwordConfirm" type="text" class="form-control"
-                                    placeholder="Repetir contraseña">
+                            <div class="input-group mt-3">
+                                <input type="text" class="form-control" name="phone"
+                                    [(ngModel)]="selectedCustomer.phone" placeholder="Teléfono" required>
                             </div>
+                            <label *ngIf="selectedCustomer.id == null"
+                                class="font-weight-bold mt-2">Credenciales</label>
+                            <div *ngIf="selectedCustomer.id == null" class="input-group">
+                                <input [(ngModel)]="selectedCustomer.password" name="password" type="password"
+                                    class="form-control" placeholder="Contraseña" required>
 
-                            <!-- <label class="font-weight-bold mt-2">Detalles de creación</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Fecha alta">
-                                <input type="text" class="form-control" placeholder="Usuario alta">
-                            </div> -->
-                            <!-- <label class="font-weight-bold mt-2">Detalles de modificación</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Fecha de modificación">
-                                <input type="text" class="form-control" placeholder="Usuario de modificación">
-                            </div> -->
+                                <input [(ngModel)]="selectedCustomer.passwordConfirm" name="passwordConfirm"
+                                    type="password" class="form-control" placeholder="Repetir contraseña" required>
+                            </div>
+                            <div class="text-danger">
+                                <i>Todos los campos son necesarios</i>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row px-3">
                     <div class="col text-right mt-3">
-                        <button (click)="createCustomer()" *ngIf="selectedCustomer.id == null"
-                            class="btn btn-success mx-1">Registrar</button>
-                        <button *ngIf="selectedCustomer.id != null" class="btn btn-success mx-1">Guardar</button>
-                        <button class="btn btn-danger mx-1">Eliminar</button>
-                        <button (click)="cancelCustomerEdit()" class="btn btn-warning mx-1">Cancelar</button>
+
+                        <button [disabled]="!customerForm.valid" type="submit"
+                            class="btn btn-success mx-1">Guardar</button>
+                        <button (click)="deleteCustomer()" class="btn btn-danger mx-1" type="button"
+                            *ngIf="selectedCustomer.id != null">Eliminar</button>
+                        <button (click)="cancelCustomerEdit()" type="button"
+                            class="btn btn-warning mx-1">Cancelar</button>
                     </div>
                 </div>
             </form>
@@ -76,52 +69,9 @@
 
 <div class="row">
     <div class="col">
-
         <div class="card ">
-            <div class="card-headear px-3 py-2 text-dark">
+            <div class="card-header px-3 py-2 text-dark">
                 <h2>Registro de cliente</h2>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col p-0">
-                        <div *ngIf="customers.lenght == 0" class="alert alert-warning">
-                            <h3>¡No existen clientes registrados!</h3>
-                        </div>
-                        <table *ngIf="customers.lenght != 0" class="table table-sm table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos Paterno</th>
-                                    <th>Apellidos Materno</th>
-                                    <th>Teléfono</th>
-                                    <th>Dirección</th>
-                                    <th>Correo</th>
-                                    <th>Rol</th>
-                                    <th class="text-center">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let customer of customers">
-                                    <td>{{customer.id}}</td>
-                                    <td>{{customer.nombre}}</td>
-                                    <td>{{customer.apellidoPaterno}}</td>
-                                    <td>{{customer.apellidoMaterno}}</td>
-                                    <td>{{customer.telefono}}</td>
-                                    <td>{{customer.direccion}}</td>
-                                    <td>{{customer.correo}}</td>
-                                    <td>{{customer.rol}}</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm" (click)="makeEditCustomer(customer)">
-                                            <span class="fa fa-edit"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col text-right">
                         <button (click)="createCustomerQuestion()" class="btn btn-primary">Registrar nuevo
@@ -130,6 +80,43 @@
                 </div>
             </div>
 
+            <div class="card-body">
+                <div class="row">
+                    <div class="col p-0">
+                        <div *ngIf="customers.length == 0" class="alert alert-warining">
+                            <h1>No existen clientes registrados</h1>
+                        </div>
+                        <table *ngIf="customers.length != 0" class="table table-sm table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                    <th>Correo</th>
+                                    <th class="text-center">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let customer of customers">
+                                    <td>{{customer.id}}</td>
+                                    <td>{{customer.name}}</td>
+                                    <td>{{customer.lastname}}</td>
+                                    <td>{{customer.phone}}</td>
+                                    <td>{{customer.address}}</td>
+                                    <td>{{customer.email}}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-info btn-sm" (click)="makeEditCustomer(customer)">
+                                            <span class="fa fa-edit"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

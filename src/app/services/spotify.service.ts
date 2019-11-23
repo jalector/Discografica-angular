@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GlobalRequestService } from './global-request.service';
 import { Album } from '../model/Album.model';
 import { Util } from '../util';
+
 export { Album } from '../model/Album.model';
 
 @Injectable({
@@ -9,7 +10,7 @@ export { Album } from '../model/Album.model';
 })
 export class SpotifyService {
   private _api: string = "https://api.spotify.com/v1/";
-  private _token: string = "BQCJHw2n4vJzhMRHZ6a9GOT6QwD4zeakVBj4hVCAbDsajN8dZFmDdnL8xn_kLZZG6FA3AmYXHnJwrjiGqU8";
+  private _token: string = "BQBwB5k5Hvy26m6HZZrkWOawYoKAjhViafJLFxU6HQHPiKfrEkIW6rex1yLLMc-7ZieZVUi04GhKxe36GKw";
 
   constructor(
     private _globalRequest: GlobalRequestService

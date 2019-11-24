@@ -85,4 +85,32 @@ export class UserService {
     });
   }
 
+  /**
+   * @author Saul Ornelas
+   * @description Función para iniciar sesión
+   */
+  public login(email: String, password: String): Promise<User> {
+    return new Promise((good, bad) => {
+      this._globalRequest.post({
+        url: this._globalRequest.api + "/login",
+        body: `
+        {
+          "email": "${email}",
+          "password": "${password}"
+        }
+        `,
+        token: null
+      }).then((response) => {
+        console.log(response);
+        good(response);
+      }).catch((error) => {
+        bad(error);
+      })
+    })
+  }
+
+  public logout() {
+    localStorage.setItem("usuario", "" );
+  }
+
 }

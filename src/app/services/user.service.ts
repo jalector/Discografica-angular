@@ -21,7 +21,7 @@ export class UserService {
   public getUsers(): Promise<User[]> {
     return new Promise((good, bad) => {
       this._globalRequest.get({
-        url: this._globalRequest.api + "/get_employees",
+        url: this._globalRequest.users + "/get_employees",
         params: "",
         token: "",
       }).then((data) => {
@@ -39,7 +39,7 @@ export class UserService {
   public register(user: User): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.post({
-        url: this._globalRequest.api + "/users",
+        url: this._globalRequest.users + "/users",
         body: user.toJSON(),
         token: null,
       }).then((response) => {
@@ -57,7 +57,7 @@ export class UserService {
   public update(user: User): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.patch({
-        url: this._globalRequest.api + `/users/${user.id.toString()}`,
+        url: this._globalRequest.users + `/users/${user.id.toString()}`,
         body: user.toJSON(),
         params: "",
       }).then((response) => {
@@ -75,7 +75,7 @@ export class UserService {
   public delete(id: string): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.delete({
-        url: this._globalRequest.api + `/users/${id}`,
+        url: this._globalRequest.users + `/users/${id}`,
         params: "",
       }).then((response) => {
         good(response.message);
@@ -92,7 +92,7 @@ export class UserService {
   public login(email: String, password: String): Promise<User> {
     return new Promise((good, bad) => {
       this._globalRequest.post({
-        url: this._globalRequest.api + "/login",
+        url: this._globalRequest.users + "/login",
         body: `
         {
           "email": "${email}",
@@ -101,7 +101,6 @@ export class UserService {
         `,
         token: null
       }).then((response) => {
-        console.log(response);
         good(response);
       }).catch((error) => {
         bad(error);
@@ -110,7 +109,7 @@ export class UserService {
   }
 
   public logout() {
-    localStorage.setItem("usuario", "" );
+    localStorage.setItem("usuario", "");
   }
 
 }

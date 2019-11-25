@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService, Album } from '../../services/spotify.service';
+import { AlbumsService } from 'src/app/services/albums.service';
 
 
 @Component({
@@ -12,14 +13,13 @@ export class HomePageComponent {
   public albums: Album[];
 
   constructor(
-    private _spotifyService: SpotifyService
+    private _albumsService: AlbumsService
   ) {
-    this.getNewReleases();
+    this.getAlbums();
   }
 
-  private async getNewReleases() {
-    this.albums = await this._spotifyService.getNewReleases();
-    console.log(this.albums);
+  private async getAlbums() {
+    this.albums = await this._albumsService.getAlbums();
   }
 
 }

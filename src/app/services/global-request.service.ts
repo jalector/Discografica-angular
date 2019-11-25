@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 export class GlobalRequestService {
 
   /** Apis a las que me voy a conectar */
-  public api: string = "http://localhost:8000/api";
+  public users: string = "http://localhost:8000/api";
+  public disks_and_sales: string = "http://localhost:8001/api";
 
 
   /** Token que se usa para la autorización en cada peticion al servidor  */

@@ -21,7 +21,7 @@ export class CustomerService {
   public getCustomers(): Promise<Customer[]> {
     return new Promise((good, bad) => {
       this._globalRequest.get({
-        url: this._globalRequest.api + "/users",
+        url: this._globalRequest.users + "/users",
         params: "",
         token: "",
       }).then((data) => {
@@ -39,7 +39,7 @@ export class CustomerService {
   public register(customer: Customer): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.post({
-        url: this._globalRequest.api + "/users",
+        url: this._globalRequest.users + "/users",
         body: customer.toJSON(),
         token: null,
       }).then((response) => {
@@ -57,7 +57,7 @@ export class CustomerService {
   public update(customer: Customer): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.patch({
-        url: this._globalRequest.api + `/users/${customer.id.toString()}`,
+        url: this._globalRequest.users + `/users/${customer.id.toString()}`,
         body: customer.toJSON(),
         params: "",
       }).then((response) => {
@@ -75,7 +75,7 @@ export class CustomerService {
   public delete(id: string): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.delete({
-        url: this._globalRequest.api + `/users/${id}`,
+        url: this._globalRequest.users + `/users/${id}`,
         params: "",
       }).then((response) => {
         good(response.message);

@@ -107,6 +107,7 @@ export class UsersPageComponent implements OnInit {
   public async createUser() {
     if (this.selectedUser.password == this.selectedUser.passwordConfirm && this.selectedUser.passwordConfirm.length > 8) {
       let response: string = await this._userService.register(this.selectedUser);
+      this.getUsers();
       this.selectedUser = null;
       this._toastr.success(response, "Registro usuario");
     } else {
@@ -132,6 +133,7 @@ export class UsersPageComponent implements OnInit {
    */
   private async deleteUser() {
     let response: string = await this._userService.delete(this.selectedUser.id.toString());
+    this.getUsers();
     this.selectedUser = null;
     this._toastr.success(response, "Registro usuario");
   }

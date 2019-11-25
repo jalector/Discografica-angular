@@ -16,14 +16,18 @@ export class AlbumsService {
   ) { }
 
   // TODO: Implement method `getAlbums`.
-  public getAlbums(): Promise<Album[]> {
+  public getAlbums(id?: string): Promise<any> {
     return new Promise((good, bad) => {
       this._globalRequest.get({
-        url: this._globalRequest.api + "/disks",
-        params: "",
+        url: this._globalRequest.disks_and_sales + "/disks",
+        params: (id != null) ? "/" + id : "",
         token: null,
       }).then((response) => {
-        good(Util.fromJSONColleciton(response, Album.fromJSON));
+        if (id == null) {
+          good(Util.fromJSONColleciton(response, Album.fromJSON));
+        } else {
+          good(Album.fromJSON(response));
+        }
       }).catch((error) => {
         bad(error);
       });
@@ -33,7 +37,7 @@ export class AlbumsService {
   public addStock(album: Album): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.post({
-        url: this._globalRequest.api + "/disks",
+        url: this._globalRequest.disks_and_sales + "/disks",
         body: album.toJSON(20 /** Esperando el login :v  */),
         token: null,
       }).then((response) => {
@@ -48,7 +52,7 @@ export class AlbumsService {
   public updateStock(album: Album): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.post({
-        url: this._globalRequest.api + "/disks",
+        url: this._globalRequest.disks_and_sales + "/disks",
         body: album.toJSON(),
         token: null,
       }).then((response) => {
@@ -63,7 +67,7 @@ export class AlbumsService {
   public delete(id: string): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.delete({
-        url: this._globalRequest.api + `/disks/${id}`,
+        url: this._globalRequest.disks_and_sales + `/disks/${id}`,
         params: "",
       }).then((response) => {
         good(response.message);

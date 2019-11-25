@@ -5,149 +5,115 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col">
-        <div class="card m-2">
-            <div class="card-headear px-3 py-2 text-dark    ">
-                <h2>Registro de usuarios</h2>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-sm table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <td>Id</td>
-                                    <td>Nombre</td>
-                                    <td>Apellidos</td>
-                                    <td>Teléfono</td>
-                                    <td>Dirección</td>
-                                    <td>Correo</td>
-                                    <td>Rol</td>
-                                    <td class="text-center">Opciones</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Juda</td>
-                                    <td>Vallejo</td>
-                                    <td>4775012321</td>
-                                    <td>La joyita #233</td>
-                                    <td>juda@mail.com</td>
-                                    <td>El rolas</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-sm">Detalle</button>
-                                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col text-right">
-                        <button class="btn btn-primary">Registrar nuevo usuario</button>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </div>
+<div class="row mb-2">
     <div class="col">
-        <div class="card m-2">
-            <div class="card-header text-dark">
+        <div *ngIf="selectedUser != null" class="card  mx-5">
+            <div class="card-headear text-dark    ">
                 <h3>Detalle del usuario</h3>
             </div>
-            <div class="card-body">
+
+            <form #userForm="ngForm" class="card-body" (ngSubmit)="submitUser()">
                 <div class="row px-3">
                     <div class="col">
                         <div class="form-row">
                             <label class="font-weight-bold">Nombre completo</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre">
-                                <input type="text" class="form-control" placeholder="Apellido">
+                                <input type="text" class="form-control" name="name" [(ngModel)]="selectedUser.name"
+                                    placeholder="Nombre" required>
+
+                                <input type="text" class="form-control" name="lastname"
+                                    [(ngModel)]="selectedUser.lastname" placeholder="Apellido paterno" required>
                             </div>
                             <label class="font-weight-bold mt-2">Datos personales</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Dirección">
-                                <input type="text" class="form-control" placeholder="Correo">
-                                <input type="text" class="form-control" placeholder="Teléfono">
+                                <input type="text" name="address" class="form-control"
+                                    [(ngModel)]="selectedUser.address" placeholder="Dirección" required>
+                                <input type="text" class="form-control" name="email"
+                                    [(ngModel)]="selectedUser.email" placeholder="Correo" required>
                             </div>
-                            <label class="font-weight-bold mt-2">Credenciales</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Contraseña">
-                                <input type="text" class="form-control" placeholder="Repetir contraseña">
+                            <div class="input-group mt-3">
+                                <input type="text" class="form-control" name="phone"
+                                    [(ngModel)]="selectedUser.phone" placeholder="Teléfono" required>
                             </div>
+                            <label *ngIf="selectedUser.id == null"
+                                class="font-weight-bold mt-2">Credenciales</label>
+                            <div *ngIf="selectedUser.id == null" class="input-group">
+                                <input [(ngModel)]="selectedUser.password" name="password" type="password"
+                                    class="form-control" placeholder="Contraseña" required>
 
-                            <label class="font-weight-bold mt-2">Detalles de creación</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Fecha alta">
-                                <input type="text" class="form-control" placeholder="Usuario alta">
+                                <input [(ngModel)]="selectedUser.passwordConfirm" name="passwordConfirm"
+                                    type="password" class="form-control" placeholder="Repetir contraseña" required>
                             </div>
-                            <label class="font-weight-bold mt-2">Detalles de modificación</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Fecha de modificación">
-                                <input type="text" class="form-control" placeholder="Usuario de modificación">
+                            <div class="text-danger">
+                                <i>Todos los campos son necesarios</i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row px-3">
                     <div class="col text-right mt-3">
-                        <button class="btn btn-success">Guardar usuario</button>
+
+                        <button [disabled]="!userForm.valid" type="submit"
+                            class="btn btn-success mx-1">Guardar</button>
+                        <button (click)="deleteUser()" class="btn btn-danger mx-1" type="button"
+                            *ngIf="selectedUser.id != null">Eliminar</button>
+                        <button (click)="cancelUserEdit()" type="button"
+                            class="btn btn-warning mx-1">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card ">
+            <div class="card-header px-3 py-2 text-dark">
+                <h2>Registro de usuario</h2>
+                <div class="row">
+                    <div class="col text-right">
+                        <button (click)="createUserQuestion()" class="btn btn-primary">Registrar nuevo
+                            usuario</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col p-0">
+                        <div *ngIf="users.length == 0" class="alert alert-warining">
+                            <h1>No existen usuarios registrados</h1>
+                        </div>
+                        <table *ngIf="users.length != 0" class="table table-sm table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                    <th>Correo</th>
+                                    <th class="text-center">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of users">
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.lastname}}</td>
+                                    <td>{{user.phone}}</td>
+                                    <td>{{user.address}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-info btn-sm" (click)="makeEditUser(user)">
+                                            <span class="fa fa-edit"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

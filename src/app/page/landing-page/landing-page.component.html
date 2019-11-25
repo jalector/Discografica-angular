@@ -9,17 +9,17 @@
             </div>
 
             <div class="form-group">
-                <label class="text-left">Nombre de usuario</label>
-                <input class="form-control" placeholder="Nombre de usuario" type="text">
+                <label class="text-left">Email de usuario</label>
+                <input class="form-control" placeholder="Email de usuario" type="email" [(ngModel)]="email" required>
             </div>
             <div class="form-group">
                 <label>Contraseña</label>
-                <input class="form-control" placeholder="Contraseña" type="password">
+                <input class="form-control" placeholder="Contraseña" type="password" [(ngModel)]="password" required>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-success px-5">Login</button>
+                    <button class="btn btn-success px-5" (click)="login(email, password)">Login</button>
                 </div>
             </div>
         </div>

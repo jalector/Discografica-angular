@@ -107,6 +107,7 @@ export class CustomersPageComponent implements OnInit {
   public async createCustomer() {
     if (this.selectedCustomer.password == this.selectedCustomer.passwordConfirm && this.selectedCustomer.passwordConfirm.length > 8) {
       let response: string = await this._customerService.register(this.selectedCustomer);
+      this.getCustomers();
       this.selectedCustomer = null;
       this._toastr.success(response, "Registro cliente");
     } else {
@@ -132,6 +133,7 @@ export class CustomersPageComponent implements OnInit {
    */
   private async deleteCustomer() {
     let response: string = await this._customerService.delete(this.selectedCustomer.id.toString());
+    this.getCustomers();
     this.selectedCustomer = null;
     this._toastr.success(response, "Registro cliente");
   }

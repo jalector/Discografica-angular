@@ -19,6 +19,7 @@ export class HomePageComponent {
 
   private async getNewReleases() {
     this.albums = await this._spotifyService.getNewReleases();
+    console.log(this.albums);
   }
 
 }

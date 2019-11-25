@@ -10,7 +10,7 @@ export { Album } from '../model/Album.model';
 })
 export class SpotifyService {
   private _api: string = "https://api.spotify.com/v1/";
-  private _token: string = "BQBwB5k5Hvy26m6HZZrkWOawYoKAjhViafJLFxU6HQHPiKfrEkIW6rex1yLLMc-7ZieZVUi04GhKxe36GKw";
+  private _token: string = "BQA5yAmOOiv_d2WdmTfZylqG712yv5cU_tQ370sOR3SwY3HuH0SmLZmyXTjIGhUsCAH407s4C2MktVJNE8M";
 
   constructor(
     private _globalRequest: GlobalRequestService
@@ -66,18 +66,4 @@ export class SpotifyService {
       });
     });
   }
-
-  // getArtists(termino: string) {
-  //   return this.getQuery(`search?q=${termino}&type=artist&limit=10`)
-  //     .pipe(map(data => data['artists'].items));
-  // }
-
-  // getArtist(id: string) {
-  //   return this.getQuery(`artists/${id}`);
-  // }
-
-  // getTopTracks(id: string) {
-  //   return this.getQuery(`artists/${id}/top-tracks?country=us`)
-  //     .pipe(map(data => data['tracks']))
-  // }
 }

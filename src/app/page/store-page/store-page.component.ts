@@ -11,12 +11,12 @@ import { AlbumsService } from 'src/app/services/albums.service';
 })
 export class StorePageComponent {
 
-  public search: string;
   public albumSearched: Album[];
+  public albums: Album[];
+
+  public search: string;
   public selectedAlbum: Album;
 
-  public stock: number;
-  public price: number;
 
   constructor(
     private _toastr: ToastrService,
@@ -26,9 +26,15 @@ export class StorePageComponent {
   ) {
     this.search = "innervisions";
     this.albumSearched = [];
+    this.albums = [];
 
     this.selectedAlbum = null;
     this.searchAlbum();
+    this.getAlbums();
+  }
+
+  public async getAlbums() {
+    this.albums = await this._albumsService.getAlbums();
   }
 
   public async searchAlbum() {
@@ -41,15 +47,34 @@ export class StorePageComponent {
 
   public async selectAlbum(album: Album) {
     this.selectedAlbum = album;
+    window.scrollTo(0, 0);
   }
 
   public get previewAlbumURL() {
-    return this._sanitazer.bypassSecurityTrustResourceUrl("https://open.spotify.com/embed/album/" + this.selectedAlbum.id);
+    return this._sanitazer.bypassSecurityTrustResourceUrl("https://open.spotify.com/embed/album/" + this.selectedAlbum.id_album);
   }
 
+  public async updateStock() {
 
-  public addStock() {
-
-    this._albumsService.addStock(this.selectedAlbum);
   }
+
+  public async addStock() {
+    if (this.selectedAlbum.price != null && this.selectedAlbum.stock != null) {
+      let respone: string = await this._albumsService.addStock(this.selectedAlbum);
+      this.selectedAlbum = null;
+      this.getAlbums();
+      this._toastr.success(respone, "Registro almacén");
+
+    } else {
+      this._toastr.error("Los campos del album no pueden ir vacíos.", "Registro almacén");
+    }
+  }
+
+  private async deleteAlbum() {
+    let response: string = await this._albumsService.delete(this.selectedAlbum.id.toString());
+    this.selectedAlbum = null;
+    this.getAlbums();
+    this._toastr.success(response, "Registro album");
+  }
+
 }

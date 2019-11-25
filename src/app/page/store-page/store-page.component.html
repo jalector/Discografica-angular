@@ -28,7 +28,7 @@
                                 <img class="img-thumbnail" [src]="album.image">
                             </div>
                             <div class="col">
-                                <h6>{{album.name}}</h6>
+                                <h6>{{album.title}}</h6>
                                 <span class="badge badge-primary badge-pill mx-1">{{album.totalTracks}} tracks</span>
                                 <i>{{album.artist}}</i>
                                 <hr>
@@ -41,8 +41,8 @@
             </div>
         </div>
     </div>
-    <div class="col">
-        <div *ngIf="selectedAlbum != null" class="card">
+    <div *ngIf="selectedAlbum != null" class="col">
+        <div class="card">
             <div class="card-header">
                 <h3>Detalles de Album</h3>
             </div>
@@ -50,15 +50,23 @@
                 <div class="row text-center">
                     <div class="col">
                         <iframe class="animated fadeIn" [src]="previewAlbumURL" class="rounded" width="100%"
-                            height="350" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            height="310" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-group">
-                        <input type="text" class="form-control m-1" placeholder="Agregar precio">
-                        <input type="text" class="form-control m-1" placeholder="Agregar Stock">
+                        <input [(ngModel)]="selectedAlbum.price" type="text" class="form-control m-1"
+                            placeholder="Agregar precio">
+                        <input [(ngModel)]="selectedAlbum.stock" type="text" class="form-control m-1"
+                            placeholder="Agregar Stock">
                     </div>
-                    <button class="btn btn-success m-1">Agregar exitencia</button>
+                    <button *ngIf="selectedAlbum.id == null" (click)="addStock()" class="btn btn-success m-1"
+                        type="button">Agregar
+                        exitencia</button>
+                    <button *ngIf="selectedAlbum.id != null" (click)="addStock()" class="btn btn-success m-1"
+                        type="button">Guardar</button>
+                    <button (click)="deleteAlbum()" class="btn btn-danger m-1" type="button">Eliminar</button>
+                    <button (click)="addStock()" class="btn btn-warning m-1" type="button">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -66,6 +74,83 @@
     </div>
 </div>
 
+
+
+
+<div class="row">
+    <div class="col">
+        <div class="card m-2">
+            <div class="card-headear px-3 py-2 text-dark">
+                <h2>Registro de almacén</h2>
+            </div>
+            <div class="card-body" style="max-height: 500px; overflow-y: scroll;">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Id</th>
+                                    <th>Titulo</th>
+                                    <th>Artista</th>
+                                    <th>Tracks</th>
+                                    <th>Lanzamiento</th>
+                                    <th>Stock</th>
+                                    <th>Precio</th>
+                                    <th>Detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let album of albums">
+                                    <td><img class="img-thumbnail" [src]="album.image" height="100px" width="100px">
+                                    </td>
+                                    <td>{{album.id}}</td>
+                                    <td>{{album.title}}</td>
+                                    <td>{{album.artist}}</td>
+                                    <td>{{album.totalTracks }}</td>
+                                    <td>{{album.releaseDate }}</td>
+                                    <td>{{album.stock}}</td>
+                                    <td>${{album.price}}</td>
+                                    <td>
+                                        <button (click)="selectAlbum(album)"
+                                            class="btn btn-sm btn-info">Detalle</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+    
 <div class="row">
     <div class="col">
         <div class="card m-2">
@@ -215,3 +300,6 @@
         </div>
     </div>
 </div>
+
+
+ -->

@@ -93,23 +93,14 @@ export class UserService {
     return new Promise((good, bad) => {
       this._globalRequest.post({
         url: this._globalRequest.users + "/login",
-        body: `
-        {
-          "email": "${email}",
-          "password": "${password}"
-        }
-        `,
+        body: `{"email": "${email}","password": "${password}"}`,
         token: null
       }).then((response) => {
-        good(response);
+        good(User.fromJSON(response));
       }).catch((error) => {
         bad(error);
       })
-    })
-  }
-
-  public logout() {
-    localStorage.setItem("usuario", "");
+    });
   }
 
 }

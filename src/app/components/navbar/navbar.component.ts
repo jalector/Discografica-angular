@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,9 +14,8 @@ export class NavbarComponent {
 
   constructor(
     private _toastr: ToastrService,
-    private _route: ActivatedRoute,
     private _router: Router,
-    private _userService: UserService,
+    public _sessionService: SessionService,
   ) {
 
   }
@@ -31,13 +30,13 @@ export class NavbarComponent {
     }
 
   }
-    /**
-   * @author Saul Ornelas
-   * @description Función para cerrar sesión e ir a login
-   */
+  /**
+ * @author Saul Ornelas
+ * @description Función para cerrar sesión e ir a login
+ */
   public logout(): void {
-    this._userService.logout();
-    this._toastr.success("Success", "Sesión cerrada correctamente");
+    this._toastr.success("Sesión cerrada correctamente", "Vuelve pronto :)");
+    this._sessionService.logout();
     this._router.navigateByUrl(`/`);
   }
 

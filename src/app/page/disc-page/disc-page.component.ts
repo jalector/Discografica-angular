@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SpotifyService, Album } from 'src/app/services/spotify.service';
 import { AlbumsService } from 'src/app/services/albums.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-disc-page',
@@ -17,6 +18,7 @@ export class DiscPageComponent {
     private _route: ActivatedRoute,
     private _sanitazer: DomSanitizer,
     private _albumsService: AlbumsService,
+    private _cartService: CartService
   ) {
     this._route.paramMap.subscribe(async (params) => {
       this.id = params.get("id");
@@ -28,6 +30,9 @@ export class DiscPageComponent {
     return this._sanitazer.bypassSecurityTrustResourceUrl("https://open.spotify.com/embed/album/" + this.album.id_album);
   }
 
-
+  public addToCard(album: Album) {
+    this._cartService.add(album);
+    console.log(this._cartService.items);
+  }
 
 }

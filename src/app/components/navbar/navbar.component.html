@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav *ngIf="_sessionService.user != null" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <span class="navbar-brand"><img src="./assets/logo.png" width="60" height="45" style="filter: invert();"></span>
     <b class="pr-5">Bootstrap</b>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

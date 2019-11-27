@@ -1,7 +1,7 @@
 export class Album {
     public price: number;
     public stock: number;
-    public quantity: number;
+    public quantity: number = 1;
     public id: number;
 
     constructor(

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -15,6 +16,7 @@ export class LandingPageComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
+    private _sessionService: SessionService,
     private _route: ActivatedRoute,
     private _router: Router,
     private _toastr: ToastrService
@@ -23,20 +25,20 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
   }
 
-      /**
-   * @author Saul Ornelas
-   * @description Función para iniciar sesión e ir a la página de inicio
-   */
+  /**
+* @author Saul Ornelas
+* @description Función para iniciar sesión e ir a la página de inicio
+*/
   public async login(email: String, password: String) {
-    if(email === undefined || email === "" || password === undefined || password === ""){
+    if (email === undefined || email === "" || password === undefined || password === "") {
       this._toastr.error("No supported", "Datos incompletos");
     } else {
       let response = await this._userService.login(email, password);
-      if(response.id){
-        localStorage.setItem("usuario", JSON.stringify(response) );
-        this._toastr.success("Success", "Sesión iniciada correctamente");
-        this._router.navigateByUrl(`/home`);
-      }else{
+
+      if (response.id) {
+        this._sessionService.user = response;
+        this._router.navigateByUrl(`home`);
+      } else {
         this._toastr.error("No supported", "Usuario o contraseña incorrectos");
       }
     }

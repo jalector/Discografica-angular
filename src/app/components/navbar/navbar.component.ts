@@ -30,6 +30,7 @@ export class NavbarComponent {
     }
 
   }
+
   /**
  * @author Saul Ornelas
  * @description Función para cerrar sesión e ir a login
@@ -40,4 +41,10 @@ export class NavbarComponent {
     this._router.navigateByUrl(`/`);
   }
 
+  public onlyAdmin(): boolean {
+    return this._sessionService.user.userType == 'administrador';
+  }
+  public onlyAdminAndEmployee(): boolean {
+    return this._sessionService.user.userType == 'administrador' || this._sessionService.user.userType == 'empleado';
+  }
 }

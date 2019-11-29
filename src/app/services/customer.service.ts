@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Customer } from '../model/Customer.model';
 import { GlobalRequestService } from './global-request.service';
 import { Util } from '../util';
+import { User } from '../model/User.model';
+export { User } from '../model/User.model';
 
-export { Customer } from '../model/Customer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,14 @@ export class CustomerService {
   * @author Juda Alector
   * @description Función que da como respuesta un arreglo de `Customer`
   */
-  public getCustomers(): Promise<Customer[]> {
+  public getCustomers(): Promise<User[]> {
     return new Promise((good, bad) => {
       this._globalRequest.get({
         url: this._globalRequest.users + "/users",
         params: "",
         token: "",
       }).then((data) => {
-        good(Util.fromJSONColleciton<Customer>(data, Customer.fromJSON));
+        good(Util.fromJSONColleciton<User>(data, User.fromJSON));
       }).catch((error) => {
         bad(error);
       });
@@ -36,7 +36,7 @@ export class CustomerService {
    * @author Juda Alector
    * @description Función que registra una instancia `Customer`
    */
-  public register(customer: Customer): Promise<string> {
+  public register(customer: User): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.post({
         url: this._globalRequest.users + "/users",
@@ -54,7 +54,7 @@ export class CustomerService {
    * @author Juda Alector
    * @description Función que actualiza una instancia `Customer`
    */
-  public update(customer: Customer): Promise<string> {
+  public update(customer: User): Promise<string> {
     return new Promise((good, bad) => {
       this._globalRequest.patch({
         url: this._globalRequest.users + `/users/${customer.id.toString()}`,

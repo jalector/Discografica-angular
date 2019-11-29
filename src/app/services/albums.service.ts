@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Album } from '../model/Album.model';
 import { GlobalRequestService } from './global-request.service';
 import { Util } from '../util';
+import { SessionService } from './session.service';
 
 export { Album } from '../model/Album.model';
 
@@ -13,6 +14,7 @@ export class AlbumsService {
 
   constructor(
     private _globalRequest: GlobalRequestService,
+    private _sessionSservice: SessionService
   ) { }
 
   // TODO: Implement method `getAlbums`.
@@ -38,7 +40,7 @@ export class AlbumsService {
     return new Promise((good, bad) => {
       this._globalRequest.post({
         url: this._globalRequest.disks_and_sales + "/disks",
-        body: album.toJSON(20 /** Esperando el login :v  */),
+        body: album.toSave(this._sessionSservice.user.id),
         token: null,
       }).then((response) => {
         good(response.message);
@@ -53,7 +55,7 @@ export class AlbumsService {
     return new Promise((good, bad) => {
       this._globalRequest.post({
         url: this._globalRequest.disks_and_sales + "/disks",
-        body: album.toJSON(),
+        body: album.toSave(),
         token: null,
       }).then((response) => {
         good(response.message);

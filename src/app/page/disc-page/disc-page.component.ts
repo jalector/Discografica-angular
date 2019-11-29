@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SpotifyService, Album } from 'src/app/services/spotify.service';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { CartService } from 'src/app/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-disc-page',
@@ -18,7 +19,8 @@ export class DiscPageComponent {
     private _route: ActivatedRoute,
     private _sanitazer: DomSanitizer,
     private _albumsService: AlbumsService,
-    private _cartService: CartService
+    private _cartService: CartService,
+    private _toastService: ToastrService,
   ) {
     this._route.paramMap.subscribe(async (params) => {
       this.id = params.get("id");
@@ -32,7 +34,6 @@ export class DiscPageComponent {
 
   public addToCard(album: Album) {
     this._cartService.add(album);
-    console.log(this._cartService.items);
   }
 
 }

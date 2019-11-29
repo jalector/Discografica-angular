@@ -1,6 +1,4 @@
-import { Person } from "../interface/Person.interface";
-
-export class User implements Person {
+export class User {
     public passwordConfirm: string;
     public constructor(
         public id?: number,
@@ -15,15 +13,15 @@ export class User implements Person {
 
     public toJSON(): string {
         let json = {
+            id: this.id,
             name: this.name,
             lastname: this.lastname,
             phone: this.phone,
             address: this.address,
             email: this.email,
             password: this.password,
-            user_type: "empleado",
+            user_type: this.userType,
         };
-
         return JSON.stringify(json);
     }
 
@@ -41,5 +39,4 @@ export class User implements Person {
         );
         return user;
     }
-
 }

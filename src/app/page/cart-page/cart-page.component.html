@@ -28,12 +28,18 @@
                 <tbody>
                     <tr *ngFor="let album of albums; let i = index;" class="text-center">
                         <td>{{i+1}}</td>
-                        <td>{{album.title}}</td>
+                        <td class="text-left">{{album.title}}</td>
                         <td>{{album.quantity}}</td>
                         <td>{{album.price}}$</td>
                         <td>{{album.price  *  album.quantity}}$</td>
                         <th>
-                            <input type="number" class="">
+                            <div class="btn-group btn-group-sm">
+                                <button (click)="_cartService.remove(album)" type="button"
+                                    class="btn btn-success">-</button>
+                                <div class="btn btn-success">{{album.quantity}}</div>
+                                <button (click)="_cartService.add(album)" type="button"
+                                    class="btn btn-success">+</button>
+                            </div>
                         </th>
                     </tr>
                 </tbody>
@@ -43,7 +49,9 @@
     </div>
     <div class="row m-3">
         <div class="col text-right px-3">
-            <button class="btn btn-primary">Comprar</button>
+            <button (click)="_cartService.clear()" *ngIf="albums.length != 0" class="btn btn-primary mx-2">Limpiar
+                carrito</button>
+            <button [disabled]="albums.length == 0" class="btn btn-primary mx-2">Comprar</button>
         </div>
     </div>
 </div>

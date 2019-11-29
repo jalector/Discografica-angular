@@ -17,6 +17,7 @@ export class Album {
 
     public toJSON(userId?: number | string): string {
         let json = {
+            id: this.id,
             id_album: this.id_album,
             title: this.title,
             artist: this.artist,
@@ -25,11 +26,31 @@ export class Album {
             release_date: this.releaseDate,
             price: this.price,
             stock: this.stock,
-            user_id: userId
+            user_id: userId,
+            quantity: this.quantity,
         }
 
         return JSON.stringify(json);
     }
+
+
+    public toSave(userId?: number | string): string {
+        let json = {
+            id: this.id,
+            id_album: this.id_album,
+            title: this.title,
+            artist: this.artist,
+            image: this.image,
+            total_tracks: this.totalTracks,
+            release_date: this.releaseDate,
+            price: this.price,
+            stock: this.stock,
+            user_id: userId,
+        }
+
+        return JSON.stringify(json);
+    }
+
 
     public static fromSpotifyJSON(json: any): Album {
         return new Album(
@@ -55,6 +76,10 @@ export class Album {
         album.id = json.id;
         album.price = json.price;
         album.stock = json.stock;
+
+        if (json.quantity) {
+            album.quantity = json.quantity;
+        }
 
         return album;
     }

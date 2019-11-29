@@ -10,12 +10,8 @@ export class CartPageComponent {
   public albums: Album[];
 
   constructor(
-    private _cartService: CartService
+    public _cartService: CartService
   ) {
     this.albums = this._cartService.items;
-    console.log(this.albums);
   }
-
-
-
 }

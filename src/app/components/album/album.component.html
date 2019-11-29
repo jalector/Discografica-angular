@@ -5,7 +5,21 @@
         <h5 class="text-muted">
             {{album.artist}}
         </h5>
-        <a href="./#/disc/{{album.id}}" class="card-link">Ver detalles</a>
-        <span class="badge badge-pill badge-success mx-2">{{album.total_tracks}}</span>
+
+        <div class="row">
+            <div class="col">
+                <button (click)="_cardService.add(album)" class="btn btn-sm btn-success">
+                    Agregar al carrito
+                </button>
+                <span class="badge badge-pill badge-success">
+                    {{album.totalTracks}} tracks
+                </span>
+            </div>
+            <div class="col">
+                <a href="./#/disc/{{album.id}}" class="card-link">
+                    Ver detalles
+                </a>
+            </div>
+        </div>
     </div>
 </div>

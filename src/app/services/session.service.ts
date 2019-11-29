@@ -14,7 +14,7 @@ export class SessionService {
     if (this._user == null) {
       let json = sessionStorage.getItem("user");
       if (json != null) {
-        this._user = User.fromJSON(JSON.stringify(json));
+        this._user = User.fromJSON(JSON.parse(json));
       }
     }
     return this._user;

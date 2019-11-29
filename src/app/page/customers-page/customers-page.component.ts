@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService, Customer } from 'src/app/services/customer.service';
+import { CustomerService, User } from 'src/app/services/customer.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -9,8 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CustomersPageComponent implements OnInit {
 
-  public customers: Customer[] = [];
-  public selectedCustomer: Customer;
+  public customers: User[] = [];
+  public selectedCustomer: User;
 
   constructor(
     private _customerService: CustomerService,
@@ -36,7 +36,7 @@ export class CustomersPageComponent implements OnInit {
    * @description Función que verifica sí un usario es nuevo o bien se ha estado
    * editando uno muestra un mensaje de advertencia de la información.
    */
-  public makeEditCustomer(customer: Customer) {
+  public makeEditCustomer(customer: User) {
     if (this.selectedCustomer == null) {
       this.selectedCustomer = customer;
     } else {
@@ -58,7 +58,7 @@ export class CustomersPageComponent implements OnInit {
    */
   public createCustomerQuestion() {
     if (this.selectedCustomer == null) {
-      this.selectedCustomer = new Customer();
+      this.selectedCustomer = new User();
       window.scrollTo(0, 0);
     } else {
       this._toastr.warning("No puedes registrar mientras estas editando un cliente");
@@ -70,7 +70,7 @@ export class CustomersPageComponent implements OnInit {
    * @author Juda Alector
    * @description Funsión que elimina un `Customer` de la base de datos
    */
-  public deleteCustomerQuestion(customer: Customer) {
+  public deleteCustomerQuestion(customer: User) {
     if (this.selectedCustomer == null) {
       this.deleteCustomer();
     } else {
@@ -106,6 +106,7 @@ export class CustomersPageComponent implements OnInit {
    */
   public async createCustomer() {
     if (this.selectedCustomer.password == this.selectedCustomer.passwordConfirm && this.selectedCustomer.passwordConfirm.length > 8) {
+      this.selectedCustomer.userType = "empleado";
       let response: string = await this._customerService.register(this.selectedCustomer);
       this.getCustomers();
       this.selectedCustomer = null;

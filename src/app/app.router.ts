@@ -8,9 +8,9 @@ import { UsersPageComponent } from './page/users-page/users-page.component';
 import { AboutPageComponent } from './page/about-page/about-page.component';
 import { CartPageComponent } from './page/cart-page/cart-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
-import { ProductsPageComponent } from './page/products-page/products-page.component';
 import { SessionGuard } from './guard/session.guard';
 import { NoSessionGuard } from './guard/no-session.guard';
+import { SalesPageComponent } from './page/sales-page/sales-page.component';
 
 
 const routes: Routes = [
@@ -23,6 +23,6 @@ const routes: Routes = [
     { path: 'about', component: AboutPageComponent, canActivate: [SessionGuard] },
     { path: 'cart', component: CartPageComponent, canActivate: [SessionGuard] },
     { path: 'search/:seachAlbum', component: SearchPageComponent, canActivate: [SessionGuard] },
-    { path: 'products', component: ProductsPageComponent, canActivate: [SessionGuard] },
+    { path: 'sales', component: SalesPageComponent },
 ];
 export const APP_ROUTER_MODULE = RouterModule.forRoot(routes, { useHash: true });

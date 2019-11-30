@@ -1,0 +1,45 @@
+<div class="m-3">
+    <div class="row">
+        <div class="col">
+            <h3>Ventas de discográfica</h3>
+        </div>
+    </div>
+
+    <div class="card m-2">
+        <div class="card-header text-dark">
+            <h6>Aquí se muestran todas las ventas que ha tenido el portal web.</h6>
+
+        </div>
+        <div class="card-body">
+            <div *ngIf="sales.length == 0" class="alert alert-info">
+                <h4>No se ha realizado ninguna compra</h4>
+            </div>
+            <table *ngIf="sales.length > 0" class="table table-hover table-sm table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th>#</th>
+                        <th>Cliente</th>
+                        <th>Cantidad</th>
+                        <th>Titulo</th>
+                        <th>Precio</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let sale of sales" class="text-center">
+                        <td>{{sale.id }}</td>
+                        <td>{{sale.client }}</td>
+                        <td>{{sale.quantity }}</td>
+                        <td>{{sale.title }}</td>
+                        <td>{{sale.price }}</td>
+                        <td>{{sale.date | date :'short'}}</td>
+                        <td>{{sale.quantity * sale.price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

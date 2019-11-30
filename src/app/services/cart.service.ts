@@ -3,7 +3,11 @@ import { Album } from './albums.service';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalRequestService } from './global-request.service';
 import { SessionService } from './session.service';
+import { Sale } from '../model/Sale.model';
+import { Util } from '../util';
+
 export { Album } from './albums.service';
+export { Sale } from '../model/Sale.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +21,10 @@ export class CartService {
     private _toastrService: ToastrService,
     private _globalRequest: GlobalRequestService,
     private _sessionService: SessionService,
-  ) { }
+  ) {
+
+    console.log(this.items);
+  }
 
   public set items(albums: Album[]) {
     this._items = albums;
@@ -40,6 +47,19 @@ export class CartService {
     }
 
     return this._items;
+  }
+
+  public get getTotal() {
+    let amount: number = 0;
+
+    this._items.forEach((album: Album) => {
+      amount += album.quantity * album.price;
+    });
+    return amount;
+  }
+
+  public get length() {
+    return this.items.length;
   }
 
   public save(albums: Album[]) {
@@ -95,22 +115,10 @@ export class CartService {
     }
   }
 
-  public buy() {
-    return new Promise((good, bad) => {
-      this._globalRequest.post({
-        url: this._globalRequest.disks_and_sales + "/sales",
-        body: JSON.stringify(this.cartToSave()),
-        token: ""
-      }).then((response) => {
-        this._toastrService.success("Tu compra fue realizada con éxito");
-        this.clear();
-      }).catch((error) => {
-        bad(error);
-      });
-    });
-  }
+
 
   public clear() {
+    this._items = [];
     sessionStorage.removeItem(this.key);
   }
 
@@ -128,12 +136,33 @@ export class CartService {
     };
   }
 
-  public get getTotal() {
-    let amount: number = 0;
-
-    this._items.forEach((album: Album) => {
-      amount += album.quantity * album.price;
+  public getSales(): Promise<Sale[]> {
+    return new Promise((good, bad) => {
+      this._globalRequest.get({
+        url: this._globalRequest.disks_and_sales + "/get_sales",
+        params: "",
+        token: ""
+      }).then((response) => {
+        good(Util.fromJSONColleciton<Sale>(response, Sale.fromJSON));
+      }).catch((error) => {
+        bad(error);
+      });
     });
-    return amount;
   }
+
+  public buy() {
+    return new Promise((good, bad) => {
+      this._globalRequest.post({
+        url: this._globalRequest.disks_and_sales + "/sales",
+        body: JSON.stringify(this.cartToSave()),
+        token: ""
+      }).then((response) => {
+        this._toastrService.success("Tu compra fue realizada con éxito");
+        this.clear();
+      }).catch((error) => {
+        bad(error);
+      });
+    });
+  }
+
 }

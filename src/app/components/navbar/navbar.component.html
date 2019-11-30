@@ -13,11 +13,24 @@
             <li *ngIf="onlyAdminAndEmployee()" class="nav-item"><a class="nav-link" href="./#/customers">Clientes</a>
             </li>
             <li *ngIf="onlyAdminAndEmployee()" class="nav-item"><a class="nav-link" href="./#/store">Almacen</a></li>
-            <li class="nav-item"><a class="nav-link" href="./#/cart">Carrito</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="./#/cart">
+                    Carrito
+                    <span *ngIf="_cartService.length > 0" class="badge badge-pill badge-success">
+                        {{_cartService.length }}
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="onlyAdminAndEmployee()" class="nav-item"><a class="nav-link" href="./#/sales">Ventas</a></li>
             <li class="nav-item"><a class="nav-link" href="./#/about">About</a></li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button (click)="logout()" class="btn btn-outline-success my-2 my-sm-0" type="button">Cerrar sesión</button>
+            <h4>
+                <span class="badge badge-success mt-2 mr-2"> {{_sessionService.user.name}} </span>
+            </h4>
+            <button (click)="logout()" class="btn btn-outline-success my-2 my-sm-0" type="button">
+                Cerrar sesión
+            </button>
         </form>
     </div>
 </nav>

@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './page/home-page/home-page.component';
-import { APP_ROUTER_MODULE } from './app.router';
 import { LandingPageComponent } from './page/landing-page/landing-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DiscPageComponent } from './page/disc-page/disc-page.component';
@@ -25,7 +24,9 @@ import { AboutPageComponent } from './page/about-page/about-page.component';
 import { StorePageComponent } from './page/store-page/store-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
 import { AlbumListItemComponent } from './components/album-list-item/album-list-item.component';
-import { ProductsPageComponent } from './page/products-page/products-page.component';
+
+import { SalesPageComponent } from './page/sales-page/sales-page.component';
+import { APP_ROUTER_MODULE } from './app.router';
 
 
 
@@ -45,7 +46,7 @@ import { ProductsPageComponent } from './page/products-page/products-page.compon
     AboutPageComponent,
     SearchPageComponent,
     AlbumListItemComponent,
-    ProductsPageComponent,
+    SalesPageComponent,
   ],
   imports: [
     BrowserModule,

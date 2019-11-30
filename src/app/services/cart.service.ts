@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Album } from './albums.service';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalRequestService } from './global-request.service';
+import { SessionService } from './session.service';
 export { Album } from './albums.service';
 
 @Injectable({
@@ -13,6 +15,8 @@ export class CartService {
 
   constructor(
     private _toastrService: ToastrService,
+    private _globalRequest: GlobalRequestService,
+    private _sessionService: SessionService,
   ) { }
 
   public set items(albums: Album[]) {
@@ -52,7 +56,7 @@ export class CartService {
           this._toastrService.error("Ya no quedan más en stock", album.title);
         } else {
           element.quantity++;
-          this._toastrService.success("Album agregado correctamente. " + element.quantity + " elementos.", album.title);
+          this._toastrService.success(`${album.title}, ${album.quantity} elementos`, "Album agregado correctamente.");
         }
         found = true;
         break;
@@ -61,9 +65,9 @@ export class CartService {
 
     if (!found) {
       this._items.push(album);
+      this._toastrService.success(`${album.title}`, "Album agregado correctamente.");
     }
 
-    console.log(this._items);
     this.save(this._items);
   }
 
@@ -91,7 +95,45 @@ export class CartService {
     }
   }
 
+  public buy() {
+    return new Promise((good, bad) => {
+      this._globalRequest.post({
+        url: this._globalRequest.disks_and_sales + "/sales",
+        body: JSON.stringify(this.cartToSave()),
+        token: ""
+      }).then((response) => {
+        this._toastrService.success("Tu compra fue realizada con éxito");
+        this.clear();
+      }).catch((error) => {
+        bad(error);
+      });
+    });
+  }
+
   public clear() {
     sessionStorage.removeItem(this.key);
+  }
+
+  public cartToSave() {
+    return {
+      client_id: 26,
+      user_id: this._sessionService.user.id,
+      albums: this._items.map<any>((album: Album) => {
+        return {
+          disk_id: album.id,
+          quantity: album.quantity,
+          price: album.price,
+        };
+      })
+    };
+  }
+
+  public get getTotal() {
+    let amount: number = 0;
+
+    this._items.forEach((album: Album) => {
+      amount += album.quantity * album.price;
+    });
+    return amount;
   }
 }

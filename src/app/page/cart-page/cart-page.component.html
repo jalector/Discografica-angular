@@ -42,6 +42,11 @@
                             </div>
                         </th>
                     </tr>
+                    <tr class="text-center">
+                        <th colspan="4">Total</th>
+                        <th>{{_cartService.getTotal}}$</th>
+                        <td><button (click)="clear()" class="btn btn-danger btn-sm">Cancelar compra</button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -49,9 +54,8 @@
     </div>
     <div class="row m-3">
         <div class="col text-right px-3">
-            <button (click)="_cartService.clear()" *ngIf="albums.length != 0" class="btn btn-primary mx-2">Limpiar
-                carrito</button>
-            <button [disabled]="albums.length == 0" class="btn btn-primary mx-2">Comprar</button>
+            <button (click)="_cartService.buy()" [disabled]="albums.length == 0"
+                class="btn btn-primary mx-2">Comprar</button>
         </div>
     </div>
 </div>

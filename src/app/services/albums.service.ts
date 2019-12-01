@@ -71,10 +71,10 @@ export class AlbumsService {
 
   public updateStock(album: Album): Promise<string> {
     return new Promise((good, bad) => {
-      this._globalRequest.post({
-        url: this._globalRequest.disks_and_sales + "/disks",
+      this._globalRequest.patch({
+        url: this._globalRequest.disks_and_sales + "/disks/" + album.id,
         body: album.toSave(),
-        token: null,
+        params: "",
       }).then((response) => {
         good(response.message);
       }).catch(error => {

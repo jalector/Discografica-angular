@@ -55,7 +55,14 @@ export class StorePageComponent {
   }
 
   public async updateStock() {
-
+    if (this.selectedAlbum.price != null && this.selectedAlbum.stock != null) {
+      let respone: string = await this._albumsService.updateStock(this.selectedAlbum);
+      this.selectedAlbum = null;
+      this.getAlbums();
+      this._toastr.success(respone, "Registro almacén");
+    } else {
+      this._toastr.error("Los campos del album no pueden ir vacíos.", "Registro almacén");
+    }
   }
 
   public async addStock() {
@@ -64,7 +71,6 @@ export class StorePageComponent {
       this.selectedAlbum = null;
       this.getAlbums();
       this._toastr.success(respone, "Registro almacén");
-
     } else {
       this._toastr.error("Los campos del album no pueden ir vacíos.", "Registro almacén");
     }

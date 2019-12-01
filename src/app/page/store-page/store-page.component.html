@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col">
         <h1>Movimientos de almacén</h1>
-        <p>Las entradas de almacén son registradas según la mercansía ha sido vendida</p>
+        <p>Las entradas de almacén son registradas según la mercancía ha sido vendida</p>
     </div>
 </div>
 
@@ -63,7 +63,7 @@
                     <button *ngIf="selectedAlbum.id == null" (click)="addStock()" class="btn btn-success m-1"
                         type="button">Agregar
                         exitencia</button>
-                    <button *ngIf="selectedAlbum.id != null" (click)="addStock()" class="btn btn-success m-1"
+                    <button *ngIf="selectedAlbum.id != null" (click)="updateStock()" class="btn btn-success m-1"
                         type="button">Guardar</button>
                     <button (click)="addStock()" class="btn btn-warning m-1" type="button">Cancelar</button>
                 </div>
@@ -90,7 +90,7 @@
                                 <tr>
                                     <th>Imagen</th>
                                     <th>Id</th>
-                                    <th>Titulo</th>
+                                    <th>Título</th>
                                     <th>Artista</th>
                                     <th>Tracks</th>
                                     <th>Lanzamiento</th>

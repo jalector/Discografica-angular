@@ -19,21 +19,22 @@
                     <tr class="text-center">
                         <th>#</th>
                         <th>Cliente</th>
-                        <th>Cantidad</th>
-                        <th>Titulo</th>
-                        <th>Precio</th>
+                        <th>Título</th>
                         <th>Fecha</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
                         <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let sale of sales" class="text-center">
+                    <tr *ngFor="let sale of sales" class="text-center"
+                        [ngClass]="{'table-success': (sale.id % 2 == 0)}">
                         <td>{{sale.id }}</td>
-                        <td>{{sale.client }}</td>
-                        <td>{{sale.quantity }}</td>
+                        <td>{{customers[sale.client]}}</td>
                         <td>{{sale.title }}</td>
-                        <td>{{sale.price }}</td>
                         <td>{{sale.date | date :'short'}}</td>
+                        <td>{{sale.quantity }}</td>
+                        <td>{{sale.price }}</td>
                         <td>{{sale.quantity * sale.price }}</td>
                     </tr>
                 </tbody>

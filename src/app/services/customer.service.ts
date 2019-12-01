@@ -21,7 +21,7 @@ export class CustomerService {
   public getCustomers(): Promise<User[]> {
     return new Promise((good, bad) => {
       this._globalRequest.get({
-        url: this._globalRequest.users + "/users",
+        url: this._globalRequest.users + "/get_clients",
         params: "",
         token: "",
       }).then((data) => {

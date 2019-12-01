@@ -106,7 +106,7 @@ export class UsersPageComponent implements OnInit {
    */
   public async createUser() {
     if (this.selectedUser.password == this.selectedUser.passwordConfirm && this.selectedUser.passwordConfirm.length > 8) {
-      this.selectedUser.userType = "cliente";
+      this.selectedUser.userType = "empleado";
       let response: string = await this._userService.register(this.selectedUser);
       this.getUsers();
       this.selectedUser = null;

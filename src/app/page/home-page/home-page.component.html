@@ -4,6 +4,8 @@
     </div>
 </div>
 
-<div class="card-columns px-4 py-2">
+<h1 *ngIf="albums.length == 0" class="text-success display-1 px-3"> No hay albumes disponibles </h1>
+
+<div *ngIf="albums.length > 0" class="card-columns px-4 py-2">
     <app-album class="animated fadeIn" *ngFor="let album of albums" [album]="album"></app-album>
 </div>

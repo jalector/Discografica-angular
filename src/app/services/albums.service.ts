@@ -26,7 +26,25 @@ export class AlbumsService {
         token: null,
       }).then((response) => {
         if (id == null) {
-          good(Util.fromJSONColleciton(response, Album.fromJSON));
+          good(Util.fromJSONColleciton(Object.values(response), Album.fromJSON));
+        } else {
+          good(Album.fromJSON(response));
+        }
+      }).catch((error) => {
+        bad(error);
+      });
+    });
+  }
+
+  public getAllAlbums(id?: string): Promise<any> {
+    return new Promise((good, bad) => {
+      this._globalRequest.get({
+        url: this._globalRequest.disks_and_sales + "/get_all_disks",
+        params: (id != null) ? "/" + id : "",
+        token: null,
+      }).then((response) => {
+        if (id == null) {
+          good(Util.fromJSONColleciton(Object.values(response), Album.fromJSON));
         } else {
           good(Album.fromJSON(response));
         }

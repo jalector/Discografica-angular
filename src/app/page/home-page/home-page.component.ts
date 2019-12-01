@@ -10,7 +10,7 @@ import { AlbumsService } from 'src/app/services/albums.service';
 })
 export class HomePageComponent {
 
-  public albums: Album[];
+  public albums: Album[] = [];
 
   constructor(
     private _albumsService: AlbumsService

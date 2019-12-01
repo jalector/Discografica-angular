@@ -7,7 +7,30 @@
 
     <div class="card m-2">
         <div class="card-header text-dark">
-            <h6>Realiza la compra de tus éxitos musicales en la mejor Discográfica del país.</h6>
+            <div class="row">
+                <div class="col">
+                    <h6>Realiza la compra de tus éxitos musicales en la mejor Discográfica del país.</h6>
+
+                </div>
+                <div *ngIf="albums.length > 0" class="col-3">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span *ngIf="selectedCustomer == null">Selecciona un cliente</span>
+                            <span *ngIf="selectedCustomer != null"> <b> [{{selectedCustomer.id}}]</b>
+                                {{selectedCustomer.name}} {{selectedCustomer.lastname}}</span>
+
+                        </button>
+                        <div class="dropdown-menu" style="max-height: 250px;overflow-y: scroll;"
+                            aria-labelledby="dropdownMenuButton">
+                            <b *ngFor="let customer of customers" (click)="selectedCustomer = customer"
+                                class="dropdown-item" style="cursor: pointer;"><b>[{{customer.id}}]</b>
+                                {{customer.name}} {{customer.lastname}}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         <div class="card-body">
@@ -54,8 +77,7 @@
     </div>
     <div class="row m-3">
         <div class="col text-right px-3">
-            <button (click)="_cartService.buy()" [disabled]="albums.length == 0"
-                class="btn btn-primary mx-2">Comprar</button>
+            <button (click)="buy()" [disabled]="albums.length == 0" class="btn btn-primary mx-2">Comprar</button>
         </div>
     </div>
 </div>

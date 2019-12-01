@@ -34,7 +34,7 @@ export class StorePageComponent {
   }
 
   public async getAlbums() {
-    this.albums = await this._albumsService.getAlbums();
+    this.albums = await this._albumsService.getAllAlbums();
   }
 
   public async searchAlbum() {

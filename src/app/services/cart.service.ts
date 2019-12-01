@@ -5,6 +5,7 @@ import { GlobalRequestService } from './global-request.service';
 import { SessionService } from './session.service';
 import { Sale } from '../model/Sale.model';
 import { Util } from '../util';
+import { User } from './customer.service';
 
 export { Album } from './albums.service';
 export { Sale } from '../model/Sale.model';
@@ -122,9 +123,9 @@ export class CartService {
     sessionStorage.removeItem(this.key);
   }
 
-  public cartToSave() {
+  public cartToSave(idCustomer: number) {
     return {
-      client_id: 26,
+      client_id: idCustomer,
       user_id: this._sessionService.user.id,
       albums: this._items.map<any>((album: Album) => {
         return {
@@ -150,11 +151,11 @@ export class CartService {
     });
   }
 
-  public buy() {
+  public buy(customer: User) {
     return new Promise((good, bad) => {
       this._globalRequest.post({
         url: this._globalRequest.disks_and_sales + "/sales",
-        body: JSON.stringify(this.cartToSave()),
+        body: JSON.stringify(this.cartToSave(customer.id)),
         token: ""
       }).then((response) => {
         this._toastrService.success("Tu compra fue realizada con éxito");

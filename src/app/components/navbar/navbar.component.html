@@ -1,6 +1,6 @@
 <nav *ngIf="_sessionService.user != null" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <span class="navbar-brand"><img src="./assets/logo.png" width="60" height="45" style="filter: invert();"></span>
-    <b class="pr-5">Bootstrap</b>
+    <b class="pr-5">Discográfica</b>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
             <li *ngIf="onlyAdminAndEmployee()" class="nav-item"><a class="nav-link" href="./#/customers">Clientes</a>
             </li>
             <li *ngIf="onlyAdminAndEmployee()" class="nav-item"><a class="nav-link" href="./#/store">Almacen</a></li>
-            <li class="nav-item">
+            <li *ngIf="onlyAdminAndEmployee()" class="nav-item">
                 <a class="nav-link" href="./#/cart">
                     Carrito
                     <span *ngIf="_cartService.length > 0" class="badge badge-pill badge-success">

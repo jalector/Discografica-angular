@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Album } from 'src/app/services/spotify.service';
 import { CartService } from 'src/app/services/cart.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-album',
@@ -15,7 +16,8 @@ export class AlbumComponent {
 
 
   constructor(
-    public _cardService: CartService
+    public _cardService: CartService,
+    public _sessionService: SessionService,
   ) {
   }
 

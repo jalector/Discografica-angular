@@ -106,7 +106,7 @@ export class CustomersPageComponent implements OnInit {
    */
   public async createCustomer() {
     if (this.selectedCustomer.password == this.selectedCustomer.passwordConfirm && this.selectedCustomer.passwordConfirm.length > 8) {
-      this.selectedCustomer.userType = "empleado";
+      this.selectedCustomer.userType = "cliente";
       let response: string = await this._customerService.register(this.selectedCustomer);
       this.getCustomers();
       this.selectedCustomer = null;

@@ -5,6 +5,7 @@ import { SpotifyService, Album } from 'src/app/services/spotify.service';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-disc-page',
@@ -21,6 +22,7 @@ export class DiscPageComponent {
     private _albumsService: AlbumsService,
     private _cartService: CartService,
     private _toastService: ToastrService,
+    public _sessionService: SessionService,
   ) {
     this._route.paramMap.subscribe(async (params) => {
       this.id = params.get("id");

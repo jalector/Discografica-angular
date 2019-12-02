@@ -12,14 +12,9 @@ export class AlbumComponent {
 
   @Input() album: Album;
 
-
-
-
   constructor(
     public _cardService: CartService,
     public _sessionService: SessionService,
-  ) {
-  }
-
+  ) { }
 
 }

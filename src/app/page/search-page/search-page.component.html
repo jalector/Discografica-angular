@@ -2,7 +2,7 @@
     <h1 class="text-center">No hay resultados de la búsqueda</h1>
 </div>
 <div *ngIf="albums != null">
-    <h4 class="m-3">Resultados: {{albums.length}} albumes encontrados</h4>
+    <h4 class="m-3">Resultados: {{albums.length}} álbumes encontrados</h4>
     <div class="grid-display">
         <app-album-list-item *ngFor="let album of albums" [album]="album">
         </app-album-list-item>
